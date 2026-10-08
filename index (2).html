@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#06110c">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EcoCycle Bio Energy · Waste to Clean Energy</title>
+<style>
+/* --- PROFESSIONAL REFINED COLOR SYSTEM --- */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #f8fafc;
+  --bg-pattern: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 60%);
+  --card: #ffffff;
+  --card-subtle: #f8fafc;
+  --card-border: #e2e8f0;
+  --tx: #0f172a;
+  --tx-muted: #64748b;
+  --bd: #e2e8f0;
+  --bd-hover: #cbd5e1;
+  --header-bg: rgba(6, 35, 20, 0.96);
+  --header-border: #144629;
+  --chip-green-bg: #ecfdf5;
+  --chip-green-tx: #065f46;
+  --chip-red-bg: #fef2f2;
+  --chip-red-tx: #991b1b;
+  --chip-amb-bg: #fffbeb;
+  --chip-amb-tx: #92400e;
+  --chip-blue-bg: #f0f9ff;
+  --chip-blue-tx: #075985;
+  --chip-purple-bg: #faf5ff;
+  --chip-purple-tx: #6b21a8;
+  --stepper-off: #e2e8f0;
+  --stepper-on: #10b981;
+  --danger-bd: #fecaca;
+  --danger-bg: #fef2f2;
+  --danger-tx: #b91c1c;
+  --btn-sec-bg: #ffffff;
+  --btn-sec-hover: #f1f5f9;
+  --btn-sec-tx: #1e293b;
+  --dropdown-bg: #ffffff;
+  --dropdown-hover: #f8fafc;
+  --input-bg: #ffffff;
+  --stat-glow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --bg: #070d09;
+  --bg-pattern: radial-gradient(ellipse 90% 60% at 50% -20%, rgba(16, 185, 129, 0.12), transparent 75%);
+  --card: #0c1510;
+  --card-subtle: #111e17;
+  --card-border: #182b20;
+  --tx: #f8fafc;
+  --tx-muted: #94a3b8;
+  --bd: #182b20;
+  --bd-hover: #264332;
+  --header-bg: rgba(6, 17, 12, 0.92);
+  --header-border: #182d20;
+  --chip-green-bg: rgba(16, 185, 129, 0.14);
+  --chip-green-tx: #34d399;
+  --chip-red-bg: rgba(239, 68, 68, 0.15);
+  --chip-red-tx: #f87171;
+  --chip-amb-bg: rgba(245, 158, 11, 0.15);
+  --chip-amb-tx: #fbbf24;
+  --chip-blue-bg: rgba(56, 189, 248, 0.14);
+  --chip-blue-tx: #38bdf8;
+  --chip-purple-bg: rgba(168, 85, 247, 0.14);
+  --chip-purple-tx: #c084fc;
+  --stepper-off: #16241c;
+  --stepper-on: #10b981;
+  --danger-bd: rgba(239, 68, 68, 0.30);
+  --danger-bg: rgba(239, 68, 68, 0.07);
+  --danger-tx: #fca5a5;
+  --btn-sec-bg: #111e17;
+  --btn-sec-hover: #192a21;
+  --btn-sec-tx: #e2e8f0;
+  --dropdown-bg: #0c1510;
+  --dropdown-hover: #14221a;
+  --input-bg: #09120d;
+  --stat-glow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  background-image: var(--bg-pattern);
+  background-attachment: fixed;
+  color: var(--tx);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Card base */
+.c {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  box-shadow: var(--stat-glow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.c:hover {
+  border-color: var(--bd-hover);
+}
+.c-interactive:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.45);
+}
+.c-subtle {
+  background: var(--card-subtle);
+  border: 1px solid var(--bd);
+  border-radius: 1rem;
+  padding: 0.95rem;
+}
+
+/* Form input */
+.in {
+  width: 100%;
+  border: 1px solid var(--bd);
+  background: var(--input-bg);
+  color: var(--tx);
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.95rem;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.in:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.20);
+}
+.in option {
+  background-color: var(--card);
+  color: var(--tx);
+  padding: 8px;
+}
+
+/* Primary Button */
+.b {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0.85rem;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px -2px rgba(5, 150, 105, 0.4);
+}
+.b:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px -2px rgba(16, 185, 129, 0.45);
+}
+.b:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.b2 {
+  background: var(--btn-sec-bg);
+  color: var(--btn-sec-tx);
+  border: 1px solid var(--bd);
+  border-radius: 0.85rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+.b2:hover {
+  background: var(--btn-sec-hover);
+  border-color: var(--bd-hover);
+  transform: translateY(-1px);
+}
+
+/* Label */
+.l {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--tx-muted);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+/* Chips / Badges */
+.chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--chip-green-bg);
+  color: var(--chip-green-tx);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.chip.red {
+  background: var(--chip-red-bg);
+  color: var(--chip-red-tx);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+.chip.amb {
+  background: var(--chip-amb-bg);
+  color: var(--chip-amb-tx);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.chip.blue {
+  background: var(--chip-blue-bg);
+  color: var(--chip-blue-tx);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+.chip.purple {
+  background: var(--chip-purple-bg);
+  color: var(--chip-purple-tx);
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+/* Danger Card */
+.c-danger {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-bd);
+  color: var(--tx);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+}
+
+/* Live pulsing indicator */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-ring 2s infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Delivery timeline pulse */
+.pulse-radar {
+  position: relative;
+}
+.pulse-radar::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid #10b981;
+  animation: radar-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes radar-ping {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--bd-hover); }
+
+/* Larger delivery / tracking status */
+.trk-bar{height:.65rem}
+.trk-icon{font-size:1.35rem;line-height:1}
+.trk-label{font-size:.8rem;line-height:1.2;text-align:center}
+.trk-step{padding:0 .1rem}
+@media (max-width:480px){.trk-label{font-size:.68rem}.trk-icon{font-size:1.15rem}}
+</style>
+<style id="offline-utilities">
+
+*,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;line-height:inherit}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}
+p,ul,ol,li,figure,blockquote,dl,dd,pre{margin:0}
+ul,ol{list-style:none;padding:0}
+a{color:inherit;text-decoration:inherit}
+b,strong{font-weight:bolder}
+code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em}
+table{text-indent:0;border-color:inherit;border-collapse:collapse}
+button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:inherit;color:inherit;margin:0;padding:0}
+button,select{text-transform:none}
+button,[type=button],[type=submit]{-webkit-appearance:button;background-color:transparent;background-image:none}
+button{cursor:pointer}
+input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}
+img,svg,video,canvas{display:block;vertical-align:middle}
+img,video{max-width:100%;height:auto}
+[hidden]{display:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse{50%{opacity:.5}}
+.absolute{position:absolute}
+.fixed{position:fixed}
+.relative{position:relative}
+.sticky{position:sticky}
+.-bottom-10{bottom:-2.5rem}
+.-bottom-20{bottom:-5rem}
+.-right-10{right:-2.5rem}
+.-right-16{right:-4rem}
+.-right-20{right:-5rem}
+.-top-16{top:-4rem}
+.-top-20{top:-5rem}
+.bottom-4{bottom:1rem}
+.inset-0{top:0;right:0;bottom:0;left:0}
+.left-4{left:1rem}
+.right-0{right:0}
+.right-3\.5{right:0.875rem}
+.right-4{right:1rem}
+.top-0{top:0}
+.top-12{top:3rem}
+.top-3\.5{top:0.875rem}
+.top-4{top:1rem}
+.z-10{z-index:10}
+.z-30{z-index:30}
+.z-50{z-index:50}
+.block{display:block}
+.flex{display:flex}
+.grid{display:grid}
+.hidden{display:none}
+.inline-flex{display:inline-flex}
+.flex-1{flex:1 1 0%}
+.flex-col{flex-direction:column}
+.flex-wrap{flex-wrap:wrap}
+.shrink-0{flex-shrink:0}
+.items-center{align-items:center}
+.items-start{align-items:flex-start}
+.justify-between{justify-content:space-between}
+.justify-center{justify-content:center}
+.gap-1{gap:0.25rem}
+.gap-1\.5{gap:0.375rem}
+.gap-2{gap:0.5rem}
+.gap-2\.5{gap:0.625rem}
+.gap-3{gap:0.75rem}
+.gap-3\.5{gap:0.875rem}
+.gap-4{gap:1rem}
+.gap-6{gap:1.5rem}
+.space-y-1 > :not([hidden]) ~ :not([hidden]){margin-top:0.25rem}
+.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){margin-top:0.375rem}
+.space-y-12 > :not([hidden]) ~ :not([hidden]){margin-top:3rem}
+.space-y-2 > :not([hidden]) ~ :not([hidden]){margin-top:0.5rem}
+.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){margin-top:0.625rem}
+.space-y-3 > :not([hidden]) ~ :not([hidden]){margin-top:0.75rem}
+.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){margin-top:0.875rem}
+.space-y-4 > :not([hidden]) ~ :not([hidden]){margin-top:1rem}
+.space-y-5 > :not([hidden]) ~ :not([hidden]){margin-top:1.25rem}
+.space-y-6 > :not([hidden]) ~ :not([hidden]){margin-top:1.5rem}
+.space-y-8 > :not([hidden]) ~ :not([hidden]){margin-top:2rem}
+.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.\!p-3{padding:0.75rem !important}
+.\!p-3\.5{padding:0.875rem !important}
+.\!px-3\.5{padding-left:0.875rem !important;padding-right:0.875rem !important}
+.\!px-5{padding-left:1.25rem !important;padding-right:1.25rem !important}
+.\!px-6{padding-left:1.5rem !important;padding-right:1.5rem !important}
+.\!px-7{padding-left:1.75rem !important;padding-right:1.75rem !important}
+.\!py-1\.5{padding-top:0.375rem !important;padding-bottom:0.375rem !important}
+.\!py-2{padding-top:0.5rem !important;padding-bottom:0.5rem !important}
+.\!py-3{padding-top:0.75rem !important;padding-bottom:0.75rem !important}
+.\!py-3\.5{padding-top:0.875rem !important;padding-bottom:0.875rem !important}
+.mb-1{margin-bottom:0.25rem}
+.mb-1\.5{margin-bottom:0.375rem}
+.mb-2{margin-bottom:0.5rem}
+.mb-2\.5{margin-bottom:0.625rem}
+.ml-2{margin-left:0.5rem}
+.ml-5{margin-left:1.25rem}
+.mt-0\.5{margin-top:0.125rem}
+.mt-1{margin-top:0.25rem}
+.mt-1\.5{margin-top:0.375rem}
+.mt-2{margin-top:0.5rem}
+.mt-2\.5{margin-top:0.625rem}
+.mt-3{margin-top:0.75rem}
+.mt-6{margin-top:1.5rem}
+.mt-8{margin-top:2rem}
+.my-1{margin-top:0.25rem;margin-bottom:0.25rem}
+.p-1{padding:0.25rem}
+.p-2{padding:0.5rem}
+.p-2\.5{padding:0.625rem}
+.p-3{padding:0.75rem}
+.p-4{padding:1rem}
+.p-5{padding:1.25rem}
+.p-6{padding:1.5rem}
+.p-8{padding:2rem}
+.pb-14{padding-bottom:3.5rem}
+.pb-16{padding-bottom:4rem}
+.pb-2{padding-bottom:0.5rem}
+.pb-3{padding-bottom:0.75rem}
+.pl-2{padding-left:0.5rem}
+.pt-1{padding-top:0.25rem}
+.pt-1\.5{padding-top:0.375rem}
+.pt-2{padding-top:0.5rem}
+.pt-3{padding-top:0.75rem}
+.pt-6{padding-top:1.5rem}
+.pt-8{padding-top:2rem}
+.px-2{padding-left:0.5rem;padding-right:0.5rem}
+.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}
+.px-3{padding-left:0.75rem;padding-right:0.75rem}
+.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}
+.px-4{padding-left:1rem;padding-right:1rem}
+.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}
+.py-1{padding-top:0.25rem;padding-bottom:0.25rem}
+.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}
+.py-2{padding-top:0.5rem;padding-bottom:0.5rem}
+.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}
+.py-3{padding-top:0.75rem;padding-bottom:0.75rem}
+.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}
+.py-6{padding-top:1.5rem;padding-bottom:1.5rem}
+.py-8{padding-top:2rem;padding-bottom:2rem}
+.mx-auto{margin-left:auto;margin-right:auto}
+.h-10{height:2.5rem}
+.h-14{height:3.5rem}
+.h-16{height:4rem}
+.h-2{height:0.5rem}
+.h-20{height:5rem}
+.h-44{height:11rem}
+.h-6{height:1.5rem}
+.h-72{height:18rem}
+.h-8{height:2rem}
+.h-80{height:20rem}
+.h-9{height:2.25rem}
+.h-96{height:24rem}
+.w-1\/2{width:50%}
+.w-10{width:2.5rem}
+.w-16{width:4rem}
+.w-20{width:5rem}
+.w-44{width:11rem}
+.w-6{width:1.5rem}
+.w-64{width:16rem}
+.w-72{width:18rem}
+.w-8{width:2rem}
+.w-80{width:20rem}
+.w-9{width:2.25rem}
+.w-96{width:24rem}
+.w-fit{width:fit-content}
+.w-full{width:100%}
+.max-h-\[90vh\]{max-height:90vh}
+.max-w-2xl{max-width:42rem}
+.max-w-3xl{max-width:48rem}
+.max-w-6xl{max-width:72rem}
+.max-w-lg{max-width:32rem}
+.max-w-md{max-width:28rem}
+.max-w-xl{max-width:36rem}
+.min-h-screen{min-height:100vh}
+.overflow-hidden{overflow:hidden}
+.overflow-x-auto{overflow-x:auto}
+.overflow-y-auto{overflow-y:auto}
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list-disc{list-style-type:disc}
+.text-center{text-align:center}
+.text-left{text-align:left}
+.text-right{text-align:right}
+.uppercase{text-transform:uppercase}
+.\!font-black{font-weight:900 !important}
+.\!text-\[10px\]{font-size:10px !important}
+.\!text-base{font-size:1rem !important;line-height:1.5rem !important}
+.\!text-xs{font-size:.75rem !important;line-height:1rem !important}
+.font-black{font-weight:900}
+.font-bold{font-weight:700}
+.font-extrabold{font-weight:800}
+.font-medium{font-weight:500}
+.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.font-normal{font-weight:400}
+.font-semibold{font-weight:600}
+.text-2xl{font-size:1.5rem;line-height:2rem}
+.text-3xl{font-size:1.875rem;line-height:2.25rem}
+.text-4xl{font-size:2.25rem;line-height:2.5rem}
+.text-\[10px\]{font-size:10px}
+.text-\[11px\]{font-size:11px}
+.text-\[9px\]{font-size:9px}
+.text-base{font-size:1rem;line-height:1.5rem}
+.text-lg{font-size:1.125rem;line-height:1.75rem}
+.text-sm{font-size:.875rem;line-height:1.25rem}
+.text-xl{font-size:1.25rem;line-height:1.75rem}
+.text-xs{font-size:.75rem;line-height:1rem}
+.leading-none{line-height:1}
+.leading-relaxed{line-height:1.625}
+.leading-tight{line-height:1.25}
+.tracking-tight{letter-spacing:-.025em}
+.tracking-wider{letter-spacing:.05em}
+.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}
+.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}
+.bg-gradient-to-tr{background-image:linear-gradient(to top right,var(--tw-gradient-stops))}
+.\!bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2) !important}
+.\!bg-white{background-color:#ffffff !important}
+.bg-\[var\(--card-subtle\)\]{background-color:var(--card-subtle)}
+.bg-\[var\(--stepper-off\)\]{background-color:var(--stepper-off)}
+.bg-black\/65{background-color:rgb(0 0 0 / 0.65)}
+.bg-blue-500\/20{background-color:rgb(59 130 246 / 0.2)}
+.bg-emerald-400\/10{background-color:rgb(52 211 153 / 0.1)}
+.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}
+.bg-emerald-500\/15{background-color:rgb(16 185 129 / 0.15)}
+.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}
+.bg-emerald-600{background-color:#059669}
+.bg-emerald-950\/40{background-color:rgb(2 44 34 / 0.4)}
+.bg-emerald-950\/70{background-color:rgb(2 44 34 / 0.7)}
+.bg-emerald-950\/90{background-color:rgb(2 44 34 / 0.9)}
+.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}
+.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}
+.\!text-emerald-300{color:#6ee7b7 !important}
+.\!text-emerald-950{color:#022c22 !important}
+.\!text-slate-400{color:#94a3b8 !important}
+.text-\[var\(--tx\)\]{color:var(--tx)}
+.text-\[var\(--tx-muted\)\]{color:var(--tx-muted)}
+.text-amber-400{color:#fbbf24}
+.text-blue-400{color:#60a5fa}
+.text-emerald-100\/80{color:rgb(209 250 229 / 0.8)}
+.text-emerald-300{color:#6ee7b7}
+.text-emerald-400{color:#34d399}
+.text-emerald-500{color:#10b981}
+.text-emerald-600{color:#059669}
+.text-red-400{color:#f87171}
+.text-red-500{color:#ef4444}
+.text-slate-300{color:#cbd5e1}
+.text-slate-400{color:#94a3b8}
+.text-slate-700{color:#334155}
+.text-transparent{color:transparent}
+.text-white{color:#ffffff}
+.accent-emerald-600{accent-color:#059669}
+.bg-clip-text{-webkit-background-clip:text;background-clip:text}
+.from-\[\#081810\]{--tw-gradient-from:#081810;--tw-gradient-to:rgb(8 24 16 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-amber-500\/20{--tw-gradient-from:rgb(245 158 11 / 0.2);--tw-gradient-to:rgb(245 158 11 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-blue-500\/20{--tw-gradient-from:rgb(59 130 246 / 0.2);--tw-gradient-to:rgb(59 130 246 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-400{--tw-gradient-from:#34d399;--tw-gradient-to:rgb(52 211 153 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-500{--tw-gradient-from:#10b981;--tw-gradient-to:rgb(16 185 129 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-500\/20{--tw-gradient-from:rgb(16 185 129 / 0.2);--tw-gradient-to:rgb(16 185 129 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-600{--tw-gradient-from:#059669;--tw-gradient-to:rgb(5 150 105 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-700{--tw-gradient-from:#047857;--tw-gradient-to:rgb(4 120 87 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-950{--tw-gradient-from:#022c22;--tw-gradient-to:rgb(2 44 34 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-emerald-950\/20{--tw-gradient-from:rgb(2 44 34 / 0.2);--tw-gradient-to:rgb(2 44 34 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-purple-500\/20{--tw-gradient-from:rgb(168 85 247 / 0.2);--tw-gradient-to:rgb(168 85 247 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.from-slate-900{--tw-gradient-from:#0f172a;--tw-gradient-to:rgb(15 23 42 / 0);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+.via-\[\#0b1b13\]{--tw-gradient-to:rgb(11 27 19 / 0);--tw-gradient-stops:var(--tw-gradient-from),#0b1b13,var(--tw-gradient-to)}
+.via-\[\#0d2218\]{--tw-gradient-to:rgb(13 34 24 / 0);--tw-gradient-stops:var(--tw-gradient-from),#0d2218,var(--tw-gradient-to)}
+.via-emerald-950{--tw-gradient-to:rgb(2 44 34 / 0);--tw-gradient-stops:var(--tw-gradient-from),#022c22,var(--tw-gradient-to)}
+.via-slate-900{--tw-gradient-to:rgb(15 23 42 / 0);--tw-gradient-stops:var(--tw-gradient-from),#0f172a,var(--tw-gradient-to)}
+.via-teal-300{--tw-gradient-to:rgb(94 234 212 / 0);--tw-gradient-stops:var(--tw-gradient-from),#5eead4,var(--tw-gradient-to)}
+.via-teal-500{--tw-gradient-to:rgb(20 184 166 / 0);--tw-gradient-stops:var(--tw-gradient-from),#14b8a6,var(--tw-gradient-to)}
+.to-\[\#06140d\]{--tw-gradient-to:#06140d}
+.to-\[\#07170f\]{--tw-gradient-to:#07170f}
+.to-cyan-500\/10{--tw-gradient-to:rgb(6 182 212 / 0.1)}
+.to-emerald-400{--tw-gradient-to:#34d399}
+.to-emerald-950{--tw-gradient-to:#022c22}
+.to-green-300{--tw-gradient-to:#86efac}
+.to-indigo-500\/10{--tw-gradient-to:rgb(99 102 241 / 0.1)}
+.to-slate-900{--tw-gradient-to:#0f172a}
+.to-teal-400{--tw-gradient-to:#2dd4bf}
+.to-teal-500{--tw-gradient-to:#14b8a6}
+.to-teal-500\/10{--tw-gradient-to:rgb(20 184 166 / 0.1)}
+.to-transparent{--tw-gradient-to:transparent}
+.to-yellow-500\/10{--tw-gradient-to:rgb(234 179 8 / 0.1)}
+.cursor-not-allowed{cursor:not-allowed}
+.cursor-pointer{cursor:pointer}
+.pointer-events-auto{pointer-events:auto}
+.pointer-events-none{pointer-events:none}
+.scale-105{transform:scale(1.05)}
+.border{border-width:1px}
+.border-b{border-bottom-width:1px}
+.border-l-4{border-left-width:4px}
+.border-t{border-top-width:1px}
+.border-t-4{border-top-width:4px}
+.divide-y > :not([hidden]) ~ :not([hidden]){border-top-width:1px}
+.rounded{border-radius:.25rem}
+.rounded-2xl{border-radius:1rem}
+.rounded-3xl{border-radius:1.5rem}
+.rounded-full{border-radius:9999px}
+.rounded-lg{border-radius:.5rem}
+.rounded-xl{border-radius:.75rem}
+.\!border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3) !important}
+.border-\[var\(--bd\)\]{border-color:var(--bd)}
+.border-emerald-400\/30{border-color:rgb(52 211 153 / 0.3)}
+.border-emerald-400\/40{border-color:rgb(52 211 153 / 0.4)}
+.border-emerald-500{border-color:#10b981}
+.border-emerald-500\/25{border-color:rgb(16 185 129 / 0.25)}
+.border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3)}
+.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}
+.border-emerald-600\/60{border-color:rgb(5 150 105 / 0.6)}
+.border-emerald-800\/60{border-color:rgb(6 95 70 / 0.6)}
+.border-emerald-800\/80{border-color:rgb(6 95 70 / 0.8)}
+.border-emerald-900\/40{border-color:rgb(6 78 59 / 0.4)}
+.border-emerald-900\/50{border-color:rgb(6 78 59 / 0.5)}
+.border-slate-300{border-color:#cbd5e1}
+.border-white\/20{border-color:rgb(255 255 255 / 0.2)}
+.divide-\[var\(--bd\)\] > :not([hidden]) ~ :not([hidden]){border-color:var(--bd)}
+.border-l-blue-500{border-left-color:#3b82f6}
+.border-l-emerald-500{border-left-color:#10b981}
+.shadow-2xl{--tw-shadow:0 25px 50px -12px var(--tw-shadow-color,rgb(0 0 0 / .25));box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / .05);box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.shadow-md{--tw-shadow:0 4px 6px -1px var(--tw-shadow-color,rgb(0 0 0 / .1)), 0 2px 4px -2px var(--tw-shadow-color,rgb(0 0 0 / .1));box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.shadow-sm{--tw-shadow:0 1px 2px 0 var(--tw-shadow-color,rgb(0 0 0 / .05));box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.shadow-xl{--tw-shadow:0 20px 25px -5px var(--tw-shadow-color,rgb(0 0 0 / .1)), 0 8px 10px -6px var(--tw-shadow-color,rgb(0 0 0 / .1));box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.shadow-emerald-500\/30{--tw-shadow-color:rgb(16 185 129 / 0.3)}
+.shadow-emerald-500\/50{--tw-shadow-color:rgb(16 185 129 / 0.5)}
+.shadow-emerald-600\/30{--tw-shadow-color:rgb(5 150 105 / 0.3)}
+.shadow-emerald-600\/40{--tw-shadow-color:rgb(5 150 105 / 0.4)}
+.opacity-40{opacity:0.4}
+.opacity-80{opacity:0.8}
+.ring-2{--tw-ring-shadow:0 0 0 2px var(--tw-ring-color,rgb(59 130 246 / .5));box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}
+.ring-emerald-500\/40{--tw-ring-color:rgb(16 185 129 / 0.4)}
+.backdrop-blur-md{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.backdrop-blur-sm{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.blur-2xl{filter:blur(40px)}
+.blur-3xl{filter:blur(64px)}
+.drop-shadow-md{filter:drop-shadow(0 4px 3px rgb(0 0 0 / .07)) drop-shadow(0 2px 2px rgb(0 0 0 / .06))}
+.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}
+.duration-300{transition-duration:.3s}
+.animate-float{animation:float 4s ease-in-out infinite}
+.hover\:underline:hover{text-decoration-line:underline}
+.hover\:\!bg-emerald-50:hover{background-color:#ecfdf5 !important}
+.hover\:bg-\[var\(--card-subtle\)\]:hover{background-color:var(--card-subtle)}
+.hover\:bg-\[var\(--dropdown-hover\)\]:hover{background-color:var(--dropdown-hover)}
+.hover\:bg-emerald-900\/60:hover{background-color:rgb(6 78 59 / 0.6)}
+.hover\:bg-emerald-950\/60:hover{background-color:rgb(2 44 34 / 0.6)}
+.hover\:bg-red-500\/10:hover{background-color:rgb(239 68 68 / 0.1)}
+.hover\:bg-slate-100:hover{background-color:#f1f5f9}
+.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}
+[data-theme="dark"] .dark\:text-emerald-300{color:#6ee7b7}
+[data-theme="dark"] .dark\:text-emerald-400{color:#34d399}
+[data-theme="dark"] .dark\:text-red-400{color:#f87171}
+.hover\:text-\[var\(--tx\)\]:hover{color:var(--tx)}
+.hover\:text-emerald-500:hover{color:#10b981}
+.hover\:text-white:hover{color:#ffffff}
+.group:hover .group-hover\:scale-105{transform:scale(1.05)}
+.group:hover .group-hover\:scale-110{transform:scale(1.1)}
+.group:hover .group-hover\:scale-125{transform:scale(1.25)}
+.hover\:scale-105:hover{transform:scale(1.05)}
+.hover\:transform-none:hover{transform:none}
+.hover\:border-emerald-500:hover{border-color:#10b981}
+.hover\:border-emerald-500\/30:hover{border-color:rgb(16 185 129 / 0.3)}
+.hover\:border-emerald-500\/40:hover{border-color:rgb(16 185 129 / 0.4)}
+.hover\:border-emerald-500\/50:hover{border-color:rgb(16 185 129 / 0.5)}
+@media (min-width:640px){
+.sm\:inline{display:inline}
+.sm\:inline-flex{display:inline-flex}
+.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sm\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sm\:mt-0{margin-top:0}
+.sm\:text-2xl{font-size:1.5rem;line-height:2rem}
+.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}
+.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}
+.sm\:text-5xl{font-size:3rem;line-height:1}
+.sm\:text-base{font-size:1rem;line-height:1.5rem}
+.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}
+.sm\:text-sm{font-size:.875rem;line-height:1.25rem}
+}
+@media (min-width:768px){
+.md\:flex{display:flex}
+.md\:hidden{display:none}
+.md\:flex-row{flex-direction:row}
+.md\:col-span-2{grid-column:span 2 / span 2}
+.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.md\:p-12{padding:3rem}
+.md\:p-14{padding:3.5rem}
+.md\:p-8{padding:2rem}
+.md\:h-24{height:6rem}
+.md\:w-24{width:6rem}
+.md\:text-left{text-align:left}
+.md\:text-6xl{font-size:3.75rem;line-height:1}
+}
+@media (min-width:1024px){
+.lg\:inline-flex{display:inline-flex}
+.lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+</style>
+<style id="responsive-layer">
+/* ===== Responsive layer: phone / tablet / desktop ===== */
+html,body{max-width:100%;overflow-x:hidden}
+body{-webkit-tap-highlight-color:transparent}
+h1,h2,h3,p{overflow-wrap:break-word}
+img,svg,canvas,video{max-width:100%}
+.overflow-x-auto{-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.md\:hidden.overflow-x-auto{scrollbar-width:none}
+.md\:hidden.overflow-x-auto::-webkit-scrollbar{display:none}
+#toast{left:1rem;align-items:flex-end}
+@media (max-width:640px){
+  #toast{left:.75rem;right:.75rem;bottom:.75rem}
+  #toast>div{width:100%}
+  .c{padding:1rem;border-radius:1rem}
+  main{padding-left:.75rem!important;padding-right:.75rem!important}
+  table{min-width:34rem}
+  .in{font-size:16px}              /* stops iOS zoom-on-focus */
+  .max-h-\[90vh\]{max-height:88dvh}
+  .trk-label{font-size:.68rem}
+  .trk-icon{font-size:1.15rem}
+}
+/* Tablet */
+@media (min-width:641px) and (max-width:1023px){
+  main{padding-left:1.5rem!important;padding-right:1.5rem!important}
+  .trk-label{font-size:.78rem}
+}
+/* Touch devices: bigger tap targets, no sticky hover jumps */
+@media (pointer:coarse){
+  .b,.b2{min-height:44px}
+  .in{min-height:44px}
+}
+@media (hover:none){
+  .c-interactive:hover,.b:hover,.b2:hover{transform:none}
+}
+/* Desktop & large monitors */
+@media (min-width:1280px){
+  .max-w-6xl{max-width:76rem}
+}
+@media (min-width:1600px){
+  html{font-size:17px}
+  .max-w-6xl{max-width:84rem}
+}
+@media (min-width:2200px){
+  html{font-size:20px}
+  .max-w-6xl{max-width:96rem}
+}
+/* Short landscape phones */
+@media (max-height:480px) and (orientation:landscape){
+  .max-h-\[90vh\]{max-height:94dvh}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+<div id="modal"></div>
+
+<script>
+// --- AUDIO SYNTHESIS & FEEDBACK ---
+let audioCtx = null;
+let soundEnabled = true;
+
+function playAudioFeedback(type = 'success') {
+  if (!soundEnabled) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    const now = audioCtx.currentTime;
+    if (type === 'celebrate') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(659.25, now + 0.08);
+      osc.frequency.setValueAtTime(783.99, now + 0.16);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+      osc.start(now);
+      osc.stop(now + 0.45);
+    } else {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(587.33, now);
+      osc.frequency.setValueAtTime(880.00, now + 0.06);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    }
+  } catch(e) {}
+}
+
+// --- OFFLINE CONFETTI (no external library) ---
+function confetti(opts) {
+  opts = opts || {};
+  const n = opts.particleCount || 50, colors = opts.colors || ['#10b981'];
+  const cv = document.createElement('canvas');
+  cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999';
+  cv.width = innerWidth; cv.height = innerHeight;
+  document.body.appendChild(cv);
+  const ctx = cv.getContext('2d');
+  const ox = cv.width / 2, oy = cv.height * ((opts.origin && opts.origin.y) || 0.7);
+  const ps = Array.from({length: n}, () => {
+    const a = (-90 + (Math.random() - 0.5) * (opts.spread || 60)) * Math.PI / 180, v = 8 + Math.random() * 8;
+    return {x: ox, y: oy, vx: Math.cos(a) * v, vy: Math.sin(a) * v, s: 4 + Math.random() * 4,
+            c: colors[Math.floor(Math.random() * colors.length)], r: Math.random() * 6};
+  });
+  let f = 0;
+  (function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.35; p.vx *= 0.99; p.r += 0.2;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      ctx.globalAlpha = Math.max(0, 1 - f / 90); ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s / 2); ctx.restore(); });
+    if (++f < 90) requestAnimationFrame(tick); else cv.remove();
+  })();
+}
+
+function launchConfetti() {
+  playAudioFeedback('celebrate');
+  if (typeof confetti === 'function') {
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      origin: { y: 0.7 },
+      colors: ['#10b981', '#059669', '#0284c7', '#d97706', '#8b5cf6']
+    });
+  }
+}
+
+// --- THEME MANAGEMENT ---
+const THEME_KEY = 'ecocycle_theme_pref';
+let currentTheme = localStorage.getItem(THEME_KEY) || 'dark';
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(THEME_KEY, theme);
+}
+applyTheme(currentTheme);
+
+function toggleTheme() {
+  const next = currentTheme === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  playAudioFeedback('tap');
+  render();
+}
+
+function themeToggleBtn(extraClass = '') {
+  const isDark = currentTheme === 'dark';
+  return '<button onclick="toggleTheme()" title="Toggle ' + (isDark ? 'Light' : 'Dark') + ' Mode" class="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-sm cursor-pointer ' +
+    (isDark 
+      ? 'border-emerald-800/80 bg-emerald-950/70 text-emerald-300 hover:bg-emerald-900/60 hover:border-emerald-500' 
+      : 'border-slate-300 bg-white/90 text-slate-700 hover:bg-slate-100') + 
+    ' ' + extraClass + '">' +
+    (isDark 
+      ? '<span class="text-sm">☀️</span><span class="hidden sm:inline">Light</span>' 
+      : '<span class="text-sm">🌙</span><span class="hidden sm:inline">Dark</span>') +
+    '</button>';
+}
+
+// --- DATA STRUCTURES & LOGIC ---
+const RATE = {
+  'Raw Veg & Fruit': {r: 0.15, icon: '🥦', tip: 'High moisture & organic acids'},
+  'Coffee & Tea': {r: 0.10, icon: '☕', tip: 'Rich nitrogen & microbial catalyst'},
+  'Cooked Food': {r: 0.05, icon: '🍲', tip: 'High biogas calorific potential'},
+  'Bakery & Grains': {r: 0.00, icon: '🥐', tip: 'High starch feedstock'},
+  'Mixed Waste': {r: 0.00, icon: '🗑️', tip: 'Requires manual pre-sort'}
+};
+
+const Q = {
+  A: {n: 'Grade A (Pristine Clean)', p: 0.2, m: 1.2, icon: '⭐', color: 'green'},
+  B: {n: 'Grade B (Standard Organics)', p: 0, m: 1, icon: '⚖️', color: 'blue'},
+  C: {n: 'Grade C (Contaminated Flag)', p: -0.2, m: 0, icon: '⚠️', color: 'red'}
+};
+
+const BASE = 0.6;
+const calc = (t, kg, g) => {
+  const rateVal = RATE[t] ? RATE[t].r : 0;
+  return {
+    pay: Math.max(0, kg * (BASE + rateVal + Q[g].p)),
+    pts: g == 'C' ? -50 : Math.round(kg * 10 * Q[g].m),
+    fee: 1 + kg * 0.1,
+    perkg: BASE + rateVal + Q[g].p
+  };
+};
+
+const m = n => '$' + n.toFixed(2);
+
+const PK = [
+  {name: 'Requested', icon: '📝', desc: 'Household scheduled batch'},
+  {name: 'Agent Assigned', icon: '🛵', desc: 'Marcus en route with EV trike'},
+  {name: 'Collected & Paid', icon: '⚖️', desc: 'Weighed on calibrated scale & paid'},
+  {name: 'Delivered to Plant', icon: '🏭', desc: 'Inoculated into anaerobic digester'}
+];
+
+const BS = [
+  {name: 'Order Placed', icon: '🛒', desc: 'Commercial contract logged'},
+  {name: 'Tanker Dispatched', icon: '🚛', desc: 'Slurry tanker in transit'},
+  {name: 'Delivered to Plant', icon: '⚡', desc: 'Transferred to methane fermenter'}
+];
+
+const PRODUCTS = [
+  ['Raw Organic High-COD Slurry', 1150, 'TS 12-15%, VS 88%', '🧪', 'Fast anaerobic breakdown'],
+  ['Pre-Treated Shredded Organics', 1000, '<10mm particle, pH 5.8-6.4', '⚙️', 'Ideal for continuous stir-tank'],
+  ['Certified Digestate Compost', 1400, 'NPK 4-3-2, moisture 25%', '🌱', 'Regenerative organic fertilizer']
+];
+
+const REWARDS = [
+  ['$3 Cashback to Wallet', 300, 'cash', 3, '💵', 'Instant digital deposit'],
+  ['$5 Utility Bill Credit', 500, 'cash', 5, '⚡', 'Credited to electric/gas bill'],
+  ['$10 EcoGrocery Voucher', 850, 'gift', 0, '🛒', 'Partner market discount'],
+  ['Free 5kg Compost Bag', 300, 'gift', 0, '🪴', 'Organic plant nourishment'],
+  ['Reusable Biodegradable Liners', 150, 'gift', 0, '🪣', 'Pack of 30 heavy-duty liners']
+];
+
+const ACC = {
+  customer: {n: 'Demo Household', e: 'customer@ecocycle.demo', icon: '🏡', badge: 'Household Tier 1'},
+  agent: {n: 'Marcus Vance', e: 'agent@ecocycle.demo', icon: '🛵', badge: 'Certified Collector'},
+  b2b: {n: 'Apex BioEnergy GmbH', e: 'buyer@ecocycle.demo', icon: '🏭', badge: 'Industrial Off-Taker'},
+  owner: {n: 'EcoCycle Platform Ops', e: 'owner@ecocycle.demo', icon: '👑', badge: 'System Administrator'}
+};
+
+const S = {
+  role: null,
+  page: 'landing',
+  menu: false,
+  wallet: 12.4,
+  pts: 1250,
+  agentEarn: 46.8,
+  revenue: 5750,
+  payouts: 2910,
+  fees: 430,
+  pickups: [
+    {
+      id: 'PK-901', t: 'Raw Veg & Fruit', kg: 6.2, g: 'A', pay: 5.27, pts: 74, st: 3, d: '06 Oct 10:45 AM',
+      driver: 'Marcus Vance', vehicle: 'EV Trike #04', binTemp: '18.2°C', plant: 'North Bioreactor #2',
+      timeline: [
+        {time: '09:15 AM', title: 'Pickup Scheduled', desc: 'Household logged 6.2 kg estimated batch'},
+        {time: '09:30 AM', title: 'Marcus Vance Assigned', desc: 'Electric cargo trike #04 dispatched'},
+        {time: '10:15 AM', title: 'Weighed & Quality Verified', desc: 'Calibrated 6.2 kg. Pristine Grade A. Payout $5.27 credited.'},
+        {time: '10:45 AM', title: 'Delivered to Bio-Digester', desc: 'Batch pumped to Anaerobic Primary Digester Tank A'}
+      ]
+    },
+    {
+      id: 'PK-884', t: 'Cooked Food', kg: 8.0, g: 'B', pay: 5.20, pts: 80, st: 2, d: '03 Oct 02:10 PM',
+      driver: 'Marcus Vance', vehicle: 'EV Trike #04', binTemp: '19.5°C', plant: 'Central Digester Hub',
+      timeline: [
+        {time: '01:00 PM', title: 'Pickup Scheduled', desc: 'Cooked food scraps scheduled'},
+        {time: '01:25 PM', title: 'Collector Dispatched', desc: 'Collector en route to pickup address'},
+        {time: '02:10 PM', title: 'Collected & Paid', desc: 'Weighed 8.0 kg. Grade B. Payout $5.20 authorized.'}
+      ]
+    },
+    {
+      id: 'PK-820', t: 'Mixed Waste', kg: 4.5, g: 'C', pay: 1.80, pts: -50, st: 1, d: '29 Sep 11:20 AM',
+      driver: 'Marcus Vance', vehicle: 'EV Trike #04', binTemp: '21.0°C', plant: 'Sorting Hub North',
+      timeline: [
+        {time: '10:50 AM', title: 'Pickup Scheduled', desc: 'Mixed waste pickup requested'},
+        {time: '11:20 AM', title: 'Agent Assigned', desc: 'Marcus Vance currently navigating to location'}
+      ]
+    }
+  ],
+  orders: [
+    {
+      id: 'PO-301', p: 'Raw Organic High-COD Slurry', tn: 10, total: 11500, st: 1,
+      carrier: 'BioLogistics Tanker 09', labSpecs: 'TS 14.2%, pH 6.1, COD 165,000 mg/L',
+      timeline: [
+        {time: '08:00 AM', title: 'Contract Purchase Order Placed', desc: 'Apex BioEnergy GmbH locked 10 metric tons'},
+        {time: '11:30 AM', title: 'Bulk Tanker 09 In-Transit', desc: 'Slurry loaded at pre-treatment terminal. ETA 2h.'}
+      ]
+    }
+  ],
+  ngos: [
+    {name: 'GreenHope Community Kitchens', type: '🍲 Soup Kitchen Relief', tons: '4.2 t/mo', city: 'Metro North', status: 'Accredited'},
+    {name: 'CleanRoots Earth Foundation', type: '🌱 Segregation Drives', tons: '8.5 t/mo', city: 'East District', status: 'Accredited'},
+    {name: 'Urban Harvest Civic Co-Op', type: '🛵 Collector Welfare', tons: '5.1 t/mo', city: 'Central Hub', status: 'Active'}
+  ],
+  pid: 902,
+  oid: 302
+};
+
+const $ = id => document.getElementById(id);
+
+function toast(t, icon = '🌿') {
+  playAudioFeedback('tap');
+  const e = document.createElement('div');
+  e.className = 'b shadow-2xl pointer-events-auto border border-emerald-400/40 backdrop-blur-md px-4 py-3 text-sm flex items-center gap-2 animate-bounce-subtle';
+  e.innerHTML = '<span class="text-lg">' + icon + '</span><span>' + t + '</span>';
+  $('toast').appendChild(e);
+  setTimeout(() => {
+    e.style.opacity = '0';
+    e.style.transform = 'translateY(10px)';
+    e.style.transition = 'all 0.3s ease';
+    setTimeout(() => e.remove(), 300);
+  }, 2700);
+}
+
+function nav(p) {
+  S.page = p;
+  S.menu = false;
+  playAudioFeedback('tap');
+  render();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function profit() {
+  return S.revenue - S.payouts - S.fees;
+}
+
+// --- DELIVERY TRACKER ---
+function stepper(list, st, clickAction = '') {
+  return '<div class="flex gap-2 mt-3 cursor-pointer" onclick="' + clickAction + '">' + list.map((x, i) => {
+    const isDone = i <= st;
+    const isCurrent = i === st;
+    return '<div class="flex-1 text-center group">' +
+      '<div class="trk-bar rounded-full transition-all duration-300 ' + 
+        (isDone 
+          ? 'bg-gradient-to-r from-emerald-500 to-teal-500 shadow-sm shadow-emerald-500/50' 
+          : 'bg-[var(--stepper-off)]') + 
+      '"></div>' +
+      '<div class="flex flex-col items-center justify-center gap-1 mt-2 trk-step">' +
+        '<span class="trk-icon ' + (isCurrent ? 'pulse-radar' : '') + '">' + x.icon + '</span>' +
+        '<span class="trk-label ' + (isCurrent ? 'font-extrabold text-emerald-500 dark:text-emerald-400' : isDone ? 'font-bold opacity-80' : 'text-[var(--tx-muted)]') + '">' + x.name + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('') + '</div>';
+}
+
+function viewDeliveryDetails(id) {
+  playAudioFeedback('tap');
+  const p = S.pickups.find(x => x.id === id);
+  if (!p) return;
+  const currentStep = PK[p.st] || PK[0];
+
+  modal(
+    '<div class="space-y-4">' +
+      '<div class="flex justify-between items-start border-b border-[var(--bd)] pb-3">' +
+        '<div>' +
+          '<div class="flex items-center gap-2">' +
+            '<span class="chip ' + (p.st === 3 ? 'green' : 'blue') + '"><span class="live-dot"></span> ' + currentStep.name + '</span>' +
+            '<span class="text-sm font-mono text-[var(--tx-muted)]">' + p.id + '</span>' +
+          '</div>' +
+          '<h3 class="text-xl font-black text-[var(--tx)] mt-1">' + p.t + ' · ' + p.kg + ' kg</h3>' +
+        '</div>' +
+        '<div class="text-right">' +
+          '<div class="text-sm text-[var(--tx-muted)]">Authorized Payout</div>' +
+          '<div class="text-xl font-black text-emerald-500 dark:text-emerald-400">' + m(p.pay) + '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="c-subtle space-y-2 border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 to-transparent">' +
+        '<div class="text-sm font-extrabold text-emerald-400 flex items-center justify-between">' +
+          '<span class="flex items-center gap-1.5"><span class="text-base">🛵</span> Logistics &amp; Transport Unit</span>' +
+          '<span class="chip"><span class="live-dot"></span> Active Telemetry</span>' +
+        '</div>' +
+        '<div class="grid grid-cols-2 gap-2 text-sm pt-1">' +
+          '<div><span class="text-[var(--tx-muted)]">Assigned Agent:</span> <b>' + (p.driver || 'Marcus Vance') + '</b></div>' +
+          '<div><span class="text-[var(--tx-muted)]">Vehicle:</span> <b>' + (p.vehicle || 'EV Trike #04') + '</b></div>' +
+          '<div><span class="text-[var(--tx-muted)]">Bin Temp:</span> <b>' + (p.binTemp || '18.2°C') + ' (Hermetic)</b></div>' +
+          '<div><span class="text-[var(--tx-muted)]">Destination:</span> <b>' + (p.plant || 'North Digester #2') + '</b></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="py-1">' +
+        '<div class="l">Live Pipeline Status</div>' +
+        stepper(PK, p.st) +
+      '</div>' +
+
+      '<div class="space-y-2 pt-2 border-t border-[var(--bd)]">' +
+        '<div class="l">Audit Log &amp; Digital Traceability</div>' +
+        '<div class="space-y-4 pl-2">' +
+          ((p.timeline && p.timeline.length) ? p.timeline : [
+            {time: 'Initiated', title: 'Request Created', desc: 'Awaiting collector batch confirmation.'}
+          ]).map((t, idx) => 
+            '<div class="flex items-start gap-3 text-sm relative">' +
+              '<div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold shrink-0 text-sm">' + (idx + 1) + '</div>' +
+              '<div>' +
+                '<div class="font-bold text-[var(--tx)] flex items-center gap-2"><span>' + t.title + '</span><span class="text-xs font-normal text-[var(--tx-muted)]">(' + t.time + ')</span></div>' +
+                '<div class="text-sm text-[var(--tx-muted)] mt-0.5">' + t.desc + '</div>' +
+              '</div>' +
+            '</div>'
+          ).join('') +
+        '</div>' +
+      '</div>' +
+
+      '<div class="pt-2 flex gap-2">' +
+        '<button class="b2 w-full" onclick="toast(\'Digital Waybill Verified: SHA256-EC9420\',\'📄\')"><span>📄</span> View Digital Certificate</button>' +
+        '<button class="b w-full" onclick="closeM()">Done</button>' +
+      '</div>' +
+    '</div>'
+  );
+}
+
+// --- LANDING PAGE ---
+function landingPage() {
+  return '<div class="space-y-12 pb-16">' +
+    '<section class="relative rounded-3xl overflow-hidden border border-emerald-500/25 p-8 md:p-14 bg-gradient-to-br from-[#081810] via-[#0b1b13] to-[#06140d] text-white shadow-2xl">' +
+      '<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>' +
+      '<div class="relative z-10 max-w-3xl space-y-6">' +
+        '<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">' +
+          '<span class="live-dot"></span> Next-Gen Circular Bio-Economy Platform' +
+        '</div>' +
+        '<h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">' +
+          'Convert your daily food waste into <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-300">Clean Biogas &amp; Cash</span>' +
+        '</h1>' +
+        '<p class="text-sm sm:text-lg text-emerald-100/80 leading-relaxed max-w-2xl">' +
+          'EcoCycle creates an incentive-driven green revolution. We pay households guaranteed rates for segregated organic waste, empower neighborhood collectors with EV logistics, and supply premium high-COD feedstock directly to anaerobic bioreactors.' +
+        '</p>' +
+        '<div class="flex flex-wrap items-center gap-3 pt-2">' +
+          '<button class="b !py-3.5 !px-7 !text-base font-extrabold shadow-xl" onclick="nav(\'login\')">' +
+            '<span>🚀</span> Launch App / Sign In' +
+          '</button>' +
+          '<button class="b2 !py-3.5 !px-6 text-sm font-bold bg-white/10 hover:bg-white/20 text-white border-white/20" onclick="document.getElementById(\'bizModel\').scrollIntoView({behavior:\'smooth\'})">' +
+            '<span>🔄</span> Explore Business Model' +
+          '</button>' +
+          '<button class="b2 !py-3.5 !px-6 text-sm font-bold bg-white/10 hover:bg-white/20 text-white border-white/20" onclick="nav(\'ngo\')">' +
+            '<span>🤝</span> NGO Allies Network' +
+          '</button>' +
+        '</div>' +
+        '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-emerald-900/50">' +
+          [['12.4 Tons', 'Landfill Diverted', '♻️'],
+           ['$18,450', 'Disbursed to Households', '💵'],
+           ['4,820 m³', 'Biomethane Produced', '⚡'],
+           ['99.8%', 'Traceability Score', '🛡️']
+          ].map(s => 
+            '<div>' +
+              '<div class="text-xl sm:text-2xl font-black text-emerald-400 flex items-center gap-1"><span>' + s[2] + '</span><span>' + s[0] + '</span></div>' +
+              '<div class="text-xs text-slate-300">' + s[1] + '</div>' +
+            '</div>'
+          ).join('') +
+        '</div>' +
+      '</div>' +
+    '</section>' +
+
+    '<section class="c p-6 md:p-8 space-y-6 border border-emerald-500/25">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<span class="chip"><span class="live-dot"></span> Interactive Simulator</span>' +
+          '<h2 class="text-2xl font-black text-[var(--tx)] mt-1">Household Waste Value Calculator</h2>' +
+          '<p class="text-xs text-[var(--tx-muted)]">Estimate how much your kitchen or community can monetize per month.</p>' +
+        '</div>' +
+        '<span class="text-xs text-[var(--tx-muted)]">Base: $3 per 5 kg minimum + Sorting Bonuses</span>' +
+      '</div>' +
+      '<div class="grid md:grid-cols-3 gap-6 items-center">' +
+        '<div class="space-y-4 md:col-span-2">' +
+          '<div>' +
+            '<div class="flex justify-between text-xs font-bold mb-1">' +
+              '<span>Weekly Kitchen Organics Weight</span>' +
+              '<span class="text-emerald-500 font-black text-sm" id="calcKgLabel">15 kg / week</span>' +
+            '</div>' +
+            '<input type="range" id="simKg" min="3" max="100" value="15" step="1" class="w-full accent-emerald-600 cursor-pointer" oninput="updateSim()">' +
+          '</div>' +
+          '<div class="grid grid-cols-2 gap-3">' +
+            '<div>' +
+              '<label class="l">Predominant Type</label>' +
+              '<select id="simType" class="in" onchange="updateSim()">' +
+                Object.keys(RATE).map(k => '<option>' + RATE[k].icon + ' ' + k + '</option>').join('') +
+              '</select>' +
+            '</div>' +
+            '<div>' +
+              '<label class="l">Sorting Quality</label>' +
+              '<select id="simGrade" class="in" onchange="updateSim()">' +
+                '<option value="A">⭐ Grade A (Pristine Clean +$0.20/kg)</option>' +
+                '<option value="B" selected>⚖️ Grade B (Standard +$0.00/kg)</option>' +
+                '<option value="C">⚠️ Contaminated (-$0.20/kg)</option>' +
+              '</select>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="c-subtle p-5 rounded-2xl border border-emerald-500/30 space-y-3 bg-gradient-to-br from-emerald-950/20 to-transparent">' +
+          '<div class="text-xs text-[var(--tx-muted)] font-bold uppercase tracking-wider">Estimated Monthly Earnings</div>' +
+          '<div class="text-3xl font-black text-emerald-500 dark:text-emerald-400" id="simPayout">$38.40</div>' +
+          '<div class="space-y-1.5 pt-2 border-t border-[var(--bd)] text-xs text-[var(--tx-muted)]">' +
+            '<div class="flex justify-between"><span>EcoPoints Earned:</span><b id="simPoints" class="text-emerald-400">720 pts</b></div>' +
+            '<div class="flex justify-between"><span>Biomethane Power:</span><b id="simKwh" class="text-emerald-400">~67 kWh</b></div>' +
+            '<div class="flex justify-between"><span>Methane Offset:</span><b id="simCo2" class="text-emerald-400">~114 kg CO₂e</b></div>' +
+          '</div>' +
+          '<button class="b w-full !py-2 text-xs font-bold" onclick="nav(\'login\')">Start Earning Today</button>' +
+        '</div>' +
+      '</div>' +
+    '</section>' +
+
+    '<section id="bizModel" class="space-y-6">' +
+      '<div class="text-center max-w-xl mx-auto space-y-2">' +
+        '<span class="chip">The Circular Tri-Party Loop</span>' +
+        '<h2 class="text-3xl font-black text-[var(--tx)]">How the Business Model Operates</h2>' +
+        '<p class="text-xs text-[var(--tx-muted)]">A profitable, zero-leakage ecosystem that benefits households, gig workers, and commercial energy generators simultaneously.</p>' +
+      '</div>' +
+      '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">' +
+        [['1. Source Segregation', 'Households & restaurants segregate food waste into designated airtight bins, requesting on-demand pickups via app.', '🏡', 'Earns $0.60–$0.95/kg'],
+         ['2. Green EV Logistics', 'Local gig agents arrive with calibrated digital scales and electric cargo trikes, weighing and certifying on the spot.', '🛵', 'Earns $1 stop + $0.10/kg'],
+         ['3. Anaerobic Bioreactors', 'Feedstock is delivered to anaerobic digester plants as high-COD organic slurry, converting to pipeline-grade biomethane.', '🏭', 'Sold at $1,000–$1,400/ton'],
+         ['4. Regenerative Agriculture', 'Digestate byproduct is processed into certified NPK organic bio-fertilizer, returning nutrients to local soils.', '🌱', 'Closed nutrient loop']
+        ].map((step, idx) => 
+          '<div class="c c-interactive flex flex-col justify-between space-y-3">' +
+            '<div>' +
+              '<div class="flex justify-between items-center mb-2">' +
+                '<span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-500 font-black text-sm flex items-center justify-center">' + (idx + 1) + '</span>' +
+                '<span class="text-2xl">' + step[2] + '</span>' +
+              '</div>' +
+              '<h3 class="font-extrabold text-base text-[var(--tx)]">' + step[0] + '</h3>' +
+              '<p class="text-xs text-[var(--tx-muted)] mt-1.5 leading-relaxed">' + step[1] + '</p>' +
+            '</div>' +
+            '<div class="chip !text-[10px] w-fit">' + step[3] + '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</section>' +
+
+    '<section class="c p-8 border border-emerald-500/25 space-y-6 text-center">' +
+      '<h2 class="text-2xl sm:text-3xl font-black text-[var(--tx)]">Choose Your Portal to Get Started</h2>' +
+      '<p class="text-xs text-[var(--tx-muted)] max-w-md mx-auto">Explore the interactive prototype as any stakeholder in the ecosystem.</p>' +
+      '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">' +
+        [['customer', '🏡 Household & Kitchen', 'Schedule pickups, track bin weight, and redeem cash or gifts.'],
+         ['agent', '🛵 Field Route Agent', 'Accept dispatches, weigh bins on calibrated scales, and earn stop fees.'],
+         ['b2b', '🏭 Biogas Off-Taker', 'Order high-COD bio slurry by metric ton with full lab COA specs.'],
+         ['owner', '👑 Platform Owner Ops', 'Monitor platform gross margin, B2B revenues, and driver logistics.']
+        ].map(r => 
+          '<div class="c-subtle hover:border-emerald-500/50 cursor-pointer p-4 transition-all flex flex-col justify-between" onclick="quickLoginRole(\'' + r[0] + '\')">' +
+            '<div>' +
+              '<div class="font-extrabold text-sm text-[var(--tx)] mb-1">' + r[1] + '</div>' +
+              '<p class="text-xs text-[var(--tx-muted)] leading-relaxed">' + r[2] + '</p>' +
+            '</div>' +
+            '<div class="text-xs font-bold text-emerald-500 pt-3 flex items-center gap-1">Enter Portal <span>→</span></div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</section>' +
+  '</div>';
+}
+
+function updateSim() {
+  const kg = +$('simKg').value;
+  $('calcKgLabel').textContent = kg + ' kg / week';
+  const rawType = $('simType').value.replace(/^[^\w]+/, '').trim();
+  const grade = $('simGrade').value;
+  const single = calc(rawType, kg, grade);
+  const monthlyPay = single.pay * 4.3;
+  const monthlyPts = single.pts * 4.3;
+  const monthlyKwh = (kg * 4.3 * 1.05).toFixed(0);
+  const monthlyCo2 = (kg * 4.3 * 1.8).toFixed(0);
+
+  $('simPayout').textContent = m(monthlyPay);
+  $('simPoints').textContent = Math.round(monthlyPts) + ' pts';
+  $('simKwh').textContent = '~' + monthlyKwh + ' kWh';
+  $('simCo2').textContent = '~' + monthlyCo2 + ' kg CO₂e';
+}
+
+function quickLoginRole(role) {
+  S.role = role;
+  S.page = 'home';
+  render();
+}
+
+/* ---------- LOGIN ---------- */
+function loginView() {
+  return '<div class="min-h-screen flex items-center justify-center p-4 relative">' +
+    '<div class="absolute top-4 left-4">' +
+      '<button onclick="nav(\'landing\')" class="b2 flex items-center gap-1.5 text-xs font-bold"><span>←</span> Return to Public Home</button>' +
+    '</div>' +
+    '<div class="absolute top-4 right-4 flex items-center gap-2">' +
+      themeToggleBtn() +
+    '</div>' +
+    '<div class="c max-w-md w-full space-y-5 border border-[var(--bd)] relative overflow-hidden backdrop-blur-sm shadow-2xl mt-8 sm:mt-0">' +
+      '<div class="absolute -top-20 -right-20 w-44 h-44 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>' +
+      '<div class="text-center space-y-1">' +
+        '<div class="w-16 h-16 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 flex items-center justify-center text-3xl shadow-xl shadow-emerald-600/30 animate-float">🌿</div>' +
+        '<h1 class="text-2xl font-black tracking-tight pt-2">EcoCycle Bio Energy</h1>' +
+        '<p class="text-xs text-[var(--tx-muted)]">Waste to energy · Pay for quality · Circular bio-grid</p>' +
+      '</div>' +
+      '<div class="space-y-3 pt-1">' +
+        '<div>' +
+          '<label class="l">Select Account Persona</label>' +
+          '<div class="grid grid-cols-2 gap-2 mb-2" id="rolePills">' +
+            [['customer', '🏡 Household', 'Sell organics'],
+             ['agent', '🛵 Field Agent', 'Collect & earn'],
+             ['b2b', '🏭 B2B Off-Taker', 'Buy feedstock'],
+             ['owner', '👑 Owner Ops', 'Platform ops']].map(x => 
+              '<button type="button" onclick="selectRolePill(\'' + x[0] + '\')" class="p-2.5 rounded-xl border text-left transition-all text-xs ' + 
+              (S.role === x[0] || (!S.role && x[0] === 'customer') ? 'border-emerald-500 bg-emerald-500/10 font-bold' : 'border-[var(--bd)] bg-[var(--card-subtle)] hover:border-emerald-500/40') + 
+              '">' +
+                '<div class="font-bold text-[var(--tx)]">' + x[1] + '</div>' +
+                '<div class="text-[10px] text-[var(--tx-muted)]">' + x[2] + '</div>' +
+              '</button>'
+            ).join('') +
+          '</div>' +
+          '<input type="hidden" id="lr" value="customer">' +
+        '</div>' +
+        '<div>' +
+          '<label class="l">Account Email</label>' +
+          '<input id="le" class="in" value="customer@ecocycle.demo">' +
+        '</div>' +
+        '<div>' +
+          '<label class="l">Security PIN / Password</label>' +
+          '<input id="lp" type="password" class="in" value="demo1234">' +
+        '</div>' +
+        '<button class="b w-full !py-3 !text-base mt-2 font-extrabold" onclick="doLogin()">' +
+          '<span>✨</span> Access Portal' +
+        '</button>' +
+      '</div>' +
+      '<div class="p-3 rounded-2xl bg-[var(--card-subtle)] border border-[var(--bd)] text-[11px] text-[var(--tx-muted)] flex items-center gap-2">' +
+        '<span class="text-base">💡</span>' +
+        '<span><b>Interactive Sandbox:</b> Click any role pill above to auto-switch login credentials.</span>' +
+      '</div>' +
+      '<div class="flex justify-center items-center gap-4 text-xs pt-1 border-t border-[var(--bd)] text-[var(--tx-muted)]">' +
+        '<button onclick="nav(\'about\')" class="hover:text-emerald-500 transition-colors flex items-center gap-1"><span>🌍</span> UN SDG Impact</button>' +
+        '<span>·</span>' +
+        '<button onclick="nav(\'ngo\')" class="hover:text-emerald-500 transition-colors flex items-center gap-1"><span>🤝</span> NGO Allies</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+function selectRolePill(r) {
+  playAudioFeedback('tap');
+  $('lr').value = r;
+  $('le').value = ACC[r].e;
+  const pills = document.querySelectorAll('#rolePills button');
+  pills.forEach(b => {
+    b.className = 'p-2.5 rounded-xl border text-left transition-all text-xs border-[var(--bd)] bg-[var(--card-subtle)] hover:border-emerald-500/40';
+  });
+  event.currentTarget.className = 'p-2.5 rounded-xl border text-left transition-all text-xs border-emerald-500 bg-emerald-500/10 font-bold';
+}
+
+function doLogin() {
+  if (!$('lp').value) return toast('Please enter password', '⚠️');
+  S.role = $('lr').value;
+  S.page = 'home';
+  render();
+}
+
+function logout() {
+  S.role = null;
+  S.page = 'landing';
+  S.menu = false;
+  playAudioFeedback('tap');
+  render();
+  toast('Signed out to Public Home', '👋');
+}
+
+/* ---------- SHELL ---------- */
+const NAVS = {
+  customer: [
+    ['home', 'Dashboard', '📊'],
+    ['rates', 'Pricing & Bonuses', '🏷️'],
+    ['rewards', 'EcoRewards', '🎁']
+  ],
+  agent: [
+    ['home', 'Active Route', '🚚'],
+    ['earn', 'Earnings Breakdown', '💰']
+  ],
+  b2b: [
+    ['home', 'Feedstock Catalog', '⚡'],
+    ['orders', 'Purchase Orders', '📦']
+  ],
+  owner: [
+    ['home', 'Platform Operations', '📈']
+  ]
+};
+
+function shell(body) {
+  const r = S.role;
+  const a = ACC[r] || {n: 'Guest Visitor', e: '', icon: '👤', badge: 'Guest'};
+  const pill = r == 'owner' ? '📈 Profit ' + m(profit()) : 
+               r == 'customer' ? '💵 ' + m(S.wallet) + ' · ⭐ ' + S.pts + ' pts' : 
+               r == 'agent' ? '💰 Shift ' + m(S.agentEarn) : 
+               r == 'b2b' ? '📦 Open Orders: ' + S.orders.filter(o => o.st < 2).length : '';
+
+  const items = r ? (NAVS[r] || []).concat([
+    ['about', 'UN SDGs', '🎯'],
+    ['ngo', 'NGO Allies', '🤝']
+  ]) : [
+    ['landing', 'Public Home', '🏡'],
+    ['about', 'UN SDGs', '🎯'],
+    ['ngo', 'NGO Allies', '🤝']
+  ];
+
+  return '<header class="sticky top-0 z-30 backdrop-blur-md border-b" style="background-color: var(--header-bg); border-color: var(--header-border);">' +
+    '<div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3">' +
+      '<div class="flex items-center gap-2.5 cursor-pointer group" onclick="nav(\'' + (r ? 'home' : 'landing') + '\')">' +
+        '<div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-base shadow-sm shadow-emerald-500/30 group-hover:scale-105 transition-transform">🌿</div>' +
+        '<div class="font-extrabold text-white tracking-tight text-base sm:text-lg">Eco<span class="text-emerald-400">Cycle</span></div>' +
+        '<span class="hidden lg:inline-flex text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 items-center gap-1"><span class="live-dot"></span> Live v2.4</span>' +
+      '</div>' +
+      '<nav class="hidden md:flex items-center gap-1.5">' +
+        items.map(i => 
+          '<button onclick="nav(\'' + i[0] + '\')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ' + 
+          (S.page == i[0] ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/40 scale-105' : 'text-slate-300 hover:text-white hover:bg-emerald-950/60') + 
+          '">' +
+            '<span>' + i[2] + '</span><span>' + i[1] + '</span>' +
+          '</button>'
+        ).join('') +
+      '</nav>' +
+      '<div class="flex items-center gap-2 relative">' +
+        (pill ? '<span class="hidden sm:inline-flex text-xs font-bold bg-emerald-950/90 border border-emerald-600/60 text-emerald-300 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-inner">' + pill + '</span>' : '') +
+        themeToggleBtn() +
+        (r ? 
+          '<button onclick="S.menu=!S.menu;render()" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-700 to-teal-500 text-white font-black text-xs ring-2 ring-emerald-500/40 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform" title="User Menu">' + 
+            a.icon + 
+          '</button>' : 
+          '<button onclick="nav(\'login\')" class="b !py-1.5 !px-3.5 !text-xs font-bold">Sign In</button>'
+        ) +
+        (S.menu ? 
+          '<div class="absolute right-0 top-12 w-64 rounded-2xl shadow-2xl p-2 text-sm z-50 border border-[var(--bd)] animate-fade-in" style="background-color: var(--dropdown-bg); color: var(--tx);">' +
+            '<div class="px-3 py-2.5 border-b border-[var(--bd)] flex items-center gap-2.5">' +
+              '<div class="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-lg">' + a.icon + '</div>' +
+              '<div class="overflow-hidden">' +
+                '<div class="font-bold truncate text-xs sm:text-sm">' + a.n + '</div>' +
+                '<div class="text-[10px] text-[var(--tx-muted)] truncate">' + a.badge + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="py-1">' +
+              '<button class="w-full text-left px-3 py-2 hover:bg-[var(--dropdown-hover)] rounded-xl transition-colors flex items-center justify-between" onclick="acct()"><span class="flex items-center gap-2"><span>👤</span> Account Details</span><span class="text-xs text-[var(--tx-muted)]">›</span></button>' +
+              '<button class="w-full text-left px-3 py-2 hover:bg-[var(--dropdown-hover)] rounded-xl transition-colors flex items-center justify-between" onclick="addAcct()"><span class="flex items-center gap-2"><span>➕</span> Switch / Add Account</span><span class="text-xs text-[var(--tx-muted)]">›</span></button>' +
+              '<button class="w-full text-left px-3 py-2 hover:bg-[var(--dropdown-hover)] rounded-xl transition-colors flex items-center justify-between" onclick="nav(\'landing\')"><span class="flex items-center gap-2"><span>🏡</span> View Public Home</span><span class="text-xs text-[var(--tx-muted)]">›</span></button>' +
+              '<button class="w-full text-left px-3 py-2 hover:bg-[var(--dropdown-hover)] rounded-xl transition-colors flex items-center justify-between" onclick="help()"><span class="flex items-center gap-2"><span>❓</span> System Guide</span><span class="text-xs text-[var(--tx-muted)]">›</span></button>' +
+            '</div>' +
+            '<div class="pt-1 border-t border-[var(--bd)]">' +
+              '<button class="w-full text-left px-3 py-2 hover:bg-red-500/10 text-red-400 rounded-xl transition-colors font-bold flex items-center gap-2" onclick="logout()"><span>🚪</span> Sign Out</button>' +
+            '</div>' +
+          '</div>' : '') +
+      '</div>' +
+    '</div>' +
+    '<div class="md:hidden flex overflow-x-auto gap-1 px-3 pb-2 pt-1 border-t border-emerald-900/40">' +
+      items.map(i => 
+        '<button onclick="nav(\'' + i[0] + '\')" class="shrink-0 px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1 ' + 
+        (S.page == i[0] ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-300 bg-emerald-950/40') + 
+        '">' +
+          '<span>' + i[2] + '</span><span>' + i[1] + '</span>' +
+        '</button>'
+      ).join('') +
+    '</div>' +
+  '</header>' +
+  '<main class="max-w-6xl mx-auto p-4 space-y-6 pb-14">' + body + '</main>';
+}
+
+function modal(h) {
+  playAudioFeedback('tap');
+  $('modal').innerHTML = '<div class="fixed inset-0 z-50 bg-black/65 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in" onclick="if(event.target==this)closeM()">' +
+    '<div class="c max-w-lg w-full space-y-4 max-h-[90vh] overflow-y-auto border border-[var(--bd)] shadow-2xl relative">' +
+      '<button onclick="closeM()" class="absolute top-3.5 right-3.5 text-[var(--tx-muted)] hover:text-[var(--tx)] text-xl leading-none font-black p-1 hover:bg-[var(--card-subtle)] rounded-lg transition-colors">&times;</button>' +
+      h +
+    '</div>' +
+  '</div>';
+}
+
+function closeM() {
+  playAudioFeedback('tap');
+  $('modal').innerHTML = '';
+}
+
+function acct() {
+  S.menu = false;
+  render();
+  const a = ACC[S.role] || ACC.customer;
+  modal('<div class="flex items-center gap-2.5"><span class="text-2xl">' + a.icon + '</span><h3 class="font-black text-xl">Account Profile</h3></div>' +
+    '<div class="c-subtle space-y-2 text-sm">' +
+      '<div class="flex justify-between py-1.5 border-b border-[var(--bd)]"><span class="text-[var(--tx-muted)]">Designation</span><b class="text-right">' + a.n + '</b></div>' +
+      '<div class="flex justify-between py-1.5 border-b border-[var(--bd)]"><span class="text-[var(--tx-muted)]">Email</span><b class="text-right truncate ml-2">' + a.e + '</b></div>' +
+      '<div class="flex justify-between py-1.5 border-b border-[var(--bd)]"><span class="text-[var(--tx-muted)]">Verified Tier</span><span class="chip">' + a.badge + '</span></div>' +
+      (S.role == 'customer' ? 
+        '<div class="flex justify-between py-1.5 border-b border-[var(--bd)]"><span class="text-[var(--tx-muted)]">Household ID</span><b>HC-9420</b></div>' +
+        '<div class="flex justify-between py-1.5 border-b border-[var(--bd)]"><span class="text-[var(--tx-muted)]">Cashback Balance</span><b class="text-emerald-500 font-black">' + m(S.wallet) + '</b></div>' +
+        '<div class="flex justify-between py-1.5"><span class="text-[var(--tx-muted)]">Redeemable EcoPoints</span><b class="text-emerald-500 font-black">' + S.pts + ' pts</b></div>' : '') +
+    '</div>' +
+    '<button class="b w-full" onclick="closeM()"><span>✔️</span> Close Profile</button>');
+}
+
+function addAcct() {
+  S.menu = false;
+  render();
+  modal('<div class="flex items-center gap-2.5"><span class="text-2xl">➕</span><h3 class="font-black text-xl">Add or Switch Account</h3></div>' +
+    '<div class="space-y-3">' +
+      '<div><label class="l">Account Type</label><select id="aa" class="in"><option value="customer">🏡 Customer / Household</option><option value="agent">🛵 Field Collection Agent</option><option value="b2b">🏭 B2B Off-Taker</option></select></div>' +
+      '<div><label class="l">Full Name / Entity</label><input id="an" class="in" placeholder="e.g. Green Valley Society"></div>' +
+      '<div><label class="l">Contact Email</label><input id="ae" class="in" placeholder="contact@domain.demo"></div>' +
+      '<button class="b w-full" onclick="saveAcct()"><span>✨</span> Save &amp; Switch Account</button>' +
+    '</div>');
+}
+
+function saveAcct() {
+  const n = $('an').value, e = $('ae').value;
+  if (!n || !e) return toast('Please fill name and email', '⚠️');
+  const r = $('aa').value;
+  ACC[r] = {n, e, icon: r === 'customer' ? '🏡' : r === 'agent' ? '🛵' : '🏭', badge: 'Custom Persona'};
+  S.role = r;
+  S.page = 'home';
+  closeM();
+  launchConfetti();
+  render();
+  toast('Switched profile to ' + n, '✨');
+}
+
+function help() {
+  modal('<div class="flex items-center gap-2.5"><span class="text-2xl">🌱</span><h3 class="font-black text-xl">Platform Architecture Guide</h3></div>' +
+    '<div class="space-y-2.5 text-sm">' +
+      '<div class="c-subtle flex gap-2.5 items-start"><span class="text-xl">🏡</span><div><b class="text-emerald-500">Households &amp; Kitchens:</b> Request pickups. Minimum $3 guaranteed per 5 kg + sorting bonuses. Grade C penalty: -50 pts.</div></div>' +
+      '<div class="c-subtle flex gap-2.5 items-start"><span class="text-xl">🛵</span><div><b class="text-emerald-500">Field Agents:</b> Accept route stops, weigh bins on calibrated scales, grade quality, and trigger immediate digital payouts. Earn $1 stop fee + $0.10/kg.</div></div>' +
+      '<div class="c-subtle flex gap-2.5 items-start"><span class="text-xl">🏭</span><div><b class="text-emerald-500">Biogas Off-Takers:</b> Contract bulk high-COD feedstock by metric ton with verified pH and total solids.</div></div>' +
+      '<p class="text-xs text-[var(--tx-muted)] pt-1">Direct Technical Support: <code class="bg-[var(--card-subtle)] px-2 py-1 rounded">support@ecocycle.demo</code></p>' +
+    '</div>' +
+    '<button class="b w-full" onclick="closeM()"><span>👍</span> Got It</button>');
+}
+
+/* ---------- CUSTOMER DASHBOARD ---------- */
+function custHome() {
+  const tot = S.pickups.reduce((a, p) => a + p.kg, 0);
+  return '<div class="rounded-3xl relative overflow-hidden border border-emerald-500/25 p-6 md:p-8 bg-gradient-to-br from-[#081810] via-[#0b1b13] to-[#06140d] text-white shadow-2xl">' +
+      '<div class="absolute -right-10 -bottom-10 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>' +
+      '<div class="flex flex-wrap justify-between items-center gap-4 relative z-10">' +
+        '<div class="max-w-lg space-y-2">' +
+          '<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">' +
+            '<span class="live-dot"></span> Real-time Waste Monetization' +
+          '</div>' +
+          '<h1 class="text-2xl sm:text-3xl font-black tracking-tight">Turn daily organic scrap into guaranteed cash</h1>' +
+          '<p class="text-xs sm:text-sm text-emerald-100/80">Guaranteed base of $3 per 5 kg. Clean sorting earns bonus rates and redeemable EcoPoints.</p>' +
+        '</div>' +
+        '<button class="b !bg-white !text-emerald-950 hover:!bg-emerald-50 !font-black !px-6 !py-3.5 shadow-xl text-base group cursor-pointer" onclick="schedule()">' +
+          '<span class="text-xl group-hover:scale-125 transition-transform">📅</span> Schedule Waste Pickup' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">' +
+      [['Wallet Cash', m(S.wallet), '💵', 'Available to redeem', 'from-emerald-500/20 to-teal-500/10'],
+       ['EcoPoints', S.pts + ' pts', '⭐', 'Reward points tier', 'from-amber-500/20 to-yellow-500/10'],
+       ['Waste Diverted', tot.toFixed(1) + ' kg', '♻️', 'Prevented landfill rotting', 'from-blue-500/20 to-cyan-500/10'],
+       ['CO₂e Offset', (tot * 1.9).toFixed(1) + ' kg', '🌍', 'Methane emissions cut', 'from-purple-500/20 to-indigo-500/10']
+      ].map(x => 
+        '<div class="c c-interactive flex flex-col justify-between relative overflow-hidden">' +
+          '<div class="flex justify-between items-start">' +
+            '<span class="l">' + x[0] + '</span>' +
+            '<div class="w-8 h-8 rounded-xl bg-gradient-to-br ' + x[4] + ' flex items-center justify-center text-lg">' + x[2] + '</div>' +
+          '</div>' +
+          '<div class="text-2xl sm:text-3xl font-black text-emerald-500 dark:text-emerald-400 my-1">' + x[1] + '</div>' +
+          '<div class="text-[11px] text-[var(--tx-muted)] flex items-center gap-1"><span>✨</span>' + x[3] + '</div>' +
+        '</div>'
+      ).join('') +
+    '</div>' +
+
+    '<div class="c space-y-4">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<h2 class="font-extrabold text-lg flex items-center gap-2"><span>📦</span> Pickups &amp; Live Delivery Tracking</h2>' +
+          '<p class="text-xs text-[var(--tx-muted)]">Click any shipment card to view the full digital telemetry, driver vehicle, and audit log.</p>' +
+        '</div>' +
+        '<span class="chip blue">' + S.pickups.length + ' Recorded Dispatches</span>' +
+      '</div>' +
+      '<div class="space-y-3">' +
+        S.pickups.map(p => 
+          '<div class="c-subtle hover:border-emerald-500/50 transition-all cursor-pointer group" onclick="viewDeliveryDetails(\'' + p.id + '\')">' +
+            '<div class="flex justify-between items-start flex-wrap gap-2">' +
+              '<div class="flex items-center gap-2.5">' +
+                '<div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">' + (RATE[p.t] ? RATE[p.t].icon : '♻️') + '</div>' +
+                '<div>' +
+                  '<div class="font-bold text-sm text-[var(--tx)] flex items-center gap-2"><span>' + p.id + ' · ' + p.t + '</span><span class="text-xs font-normal text-emerald-500 hover:underline">View Live Tracker ↗</span></div>' +
+                  '<div class="text-sm text-[var(--tx-muted)]">Weight: <b>' + p.kg + ' kg</b> · Logged: ' + p.d + ' · Driver: ' + (p.driver || 'Marcus Vance') + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="text-right flex items-center gap-2">' +
+                '<span class="chip ' + (p.g == 'C' ? 'red' : p.g == 'A' ? '' : 'blue') + '">' + Q[p.g].icon + ' ' + Q[p.g].n + '</span>' +
+                '<span class="font-black text-emerald-500 dark:text-emerald-400 text-sm">' + 
+                  (p.st >= 2 ? m(p.pay) + ' · ' + (p.pts > 0 ? '+' : '') + p.pts + ' pts' : 'Est. ' + m(p.pay)) + 
+                '</span>' +
+              '</div>' +
+            '</div>' +
+            stepper(PK, p.st, 'viewDeliveryDetails(\'' + p.id + '\')') +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>';
+}
+
+function schedule() {
+  modal('<div class="flex items-center gap-2.5"><span class="text-2xl">📅</span><h3 class="font-black text-xl">Schedule Organics Pickup</h3></div>' +
+    '<div class="space-y-3.5">' +
+      '<div>' +
+        '<label class="l">Select Waste Category</label>' +
+        '<div class="grid grid-cols-2 gap-2 mb-2" id="wasteGrid">' +
+          Object.keys(RATE).map(k => 
+            '<button type="button" onclick="selectWasteType(\'' + k + '\')" class="p-2.5 rounded-xl border text-left transition-all text-xs flex items-center gap-2 ' + 
+            (k === 'Raw Veg & Fruit' ? 'border-emerald-500 bg-emerald-500/10 font-bold' : 'border-[var(--bd)] bg-[var(--card-subtle)] hover:border-emerald-500/30') + 
+            '">' +
+              '<span class="text-lg">' + RATE[k].icon + '</span>' +
+              '<span class="truncate">' + k + '</span>' +
+            '</button>'
+          ).join('') +
+        '</div>' +
+        '<input type="hidden" id="st" value="Raw Veg & Fruit">' +
+      '</div>' +
+      '<div class="grid grid-cols-2 gap-2.5">' +
+        '<div><label class="l">Estimated Weight (kg)</label><input id="sk" type="number" min="1" max="100" value="5" class="in" oninput="est()"></div>' +
+        '<div><label class="l">Preferred Date</label><input id="sd" type="date" class="in" value="' + new Date().toISOString().split('T')[0] + '"></div>' +
+      '</div>' +
+      '<div id="se" class="c-subtle !text-xs !p-3 space-y-1.5 border border-emerald-500/30"></div>' +
+      '<div class="flex gap-2 pt-1">' +
+        '<button class="b2 w-1/2" onclick="closeM()">Cancel</button>' +
+        '<button class="b w-1/2 font-bold" onclick="doSched()"><span>🚀</span> Confirm Pickup</button>' +
+      '</div>' +
+    '</div>');
+  est();
+}
+
+function selectWasteType(t) {
+  playAudioFeedback('tap');
+  $('st').value = t;
+  const btns = document.querySelectorAll('#wasteGrid button');
+  btns.forEach(b => {
+    b.className = 'p-2.5 rounded-xl border text-left transition-all text-xs flex items-center gap-2 border-[var(--bd)] bg-[var(--card-subtle)] hover:border-emerald-500/30';
+  });
+  event.currentTarget.className = 'p-2.5 rounded-xl border text-left transition-all text-xs flex items-center gap-2 border-emerald-500 bg-emerald-500/10 font-bold';
+  est();
+}
+
+function est() {
+  const t = $('st').value, k = +$('sk').value || 0;
+  const rateObj = RATE[t] || {r: 0, icon: '🥦'};
+  $('se').innerHTML = 
+    '<div class="flex justify-between items-center text-[var(--tx-muted)]"><span>Base Guaranteed:</span><b>$0.60/kg</b></div>' +
+    '<div class="flex justify-between items-center text-[var(--tx-muted)]"><span>Organic Premium:</span><b>+$' + rateObj.r.toFixed(2) + '/kg (' + t + ')</b></div>' +
+    '<div class="flex justify-between items-center text-sm pt-1 border-t border-[var(--bd)] text-emerald-500 dark:text-emerald-400 font-extrabold">' +
+      '<span>Standard Payout (Grade B):</span><span>' + m(calc(t, k, 'B').pay) + '</span>' +
+    '</div>' +
+    '<div class="text-[10px] text-emerald-600 dark:text-emerald-300 font-medium flex items-center gap-1">' +
+      '<span>⭐</span> Clean Grade A bonus payout: up to <b>' + m(calc(t, k, 'A').pay) + '</b> + 1.2× points multiplier' +
+    '</div>';
+}
+
+function doSched() {
+  const t = $('st').value, k = +$('sk').value;
+  if (!k) return;
+  const newId = 'PK-' + (S.pid++);
+  S.pickups.unshift({
+    id: newId, t, kg: k, g: 'B', pay: calc(t, k, 'B').pay, pts: 0, st: 0, d: 'Today (Just Now)',
+    driver: 'Marcus Vance', vehicle: 'EV Trike #04', binTemp: 'Pending Dispatch', plant: 'North Bioreactor #2',
+    timeline: [
+      {time: 'Just now', title: 'Pickup Dispatched', desc: 'Household submitted ' + k + ' kg ' + t + ' batch.'}
+    ]
+  });
+  closeM();
+  launchConfetti();
+  render();
+  toast('Pickup ' + newId + ' scheduled! Click card anytime to track.', '🚚');
+}
+
+function rates() {
+  return '<div class="c space-y-3.5">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<h2 class="font-black text-xl flex items-center gap-2"><span>🏷️</span> Transparent Rates Per Kilogram</h2>' +
+          '<p class="text-xs text-[var(--tx-muted)] mt-1">Guaranteed baseline: $0.60/kg ($3 minimum per 5 kg batch). Higher energy density commands higher premiums.</p>' +
+        '</div>' +
+        '<span class="chip"><span class="live-dot"></span> Live Index</span>' +
+      '</div>' +
+      '<div class="overflow-x-auto rounded-2xl border border-[var(--bd)]">' +
+        '<table class="w-full text-sm text-left">' +
+          '<thead class="bg-[var(--card-subtle)] text-xs text-[var(--tx-muted)] uppercase tracking-wider">' +
+            '<tr><th class="py-3.5 px-4">Waste Classification</th><th class="py-3.5 px-4 text-emerald-400">Grade A (Pristine)</th><th class="py-3.5 px-4">Grade B (Standard)</th><th class="py-3.5 px-4 text-red-400">Contaminated</th></tr>' +
+          '</thead>' +
+          '<tbody class="divide-y divide-[var(--bd)]">' +
+            Object.keys(RATE).map(t => 
+              '<tr class="hover:bg-[var(--card-subtle)] transition-colors">' +
+                '<td class="py-3 px-4 font-bold text-[var(--tx)] flex items-center gap-2">' +
+                  '<span class="text-xl">' + RATE[t].icon + '</span>' +
+                  '<div><div>' + t + '</div><div class="text-[10px] text-[var(--tx-muted)] font-normal">' + RATE[t].tip + '</div></div>' +
+                '</td>' +
+                '<td class="py-3 px-4 font-black text-emerald-500 dark:text-emerald-400">' + m(calc(t, 1, 'A').perkg) + '/kg</td>' +
+                '<td class="py-3 px-4 font-semibold">' + m(calc(t, 1, 'B').perkg) + '/kg</td>' +
+                '<td class="py-3 px-4 text-red-400 font-bold">' + m(calc(t, 1, 'C').perkg) + '/kg</td>' +
+              '</tr>'
+            ).join('') +
+          '</tbody>' +
+        '</table>' +
+      '</div>' +
+    '</div>' +
+    '<div class="c-danger space-y-2">' +
+      '<h2 class="font-black text-lg text-red-500 dark:text-red-400 flex items-center gap-2"><span>⚠️</span> Penalties &amp; Quality Guidelines</h2>' +
+      '<ul class="text-sm list-disc ml-5 space-y-1 text-[var(--tx)]">' +
+        '<li><b class="text-red-400">Contaminated Bin: −50 EcoPoints deduction</b> and a $0.20/kg penalty deduction due to labor-intensive decontamination.</li>' +
+        '<li>Inorganic contaminants include plastic wrapping, broken glass, batteries, and synthetic oils.</li>' +
+        '<li><b>Pristine Grade A sorting</b> earns a <b class="text-emerald-400">+$0.20/kg bonus</b> and 1.2× points multiplier.</li>' +
+        '<li>EcoPoints never drop below 0.</li>' +
+      '</ul>' +
+    '</div>';
+}
+
+function rewards() {
+  return '<div class="c space-y-2">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div><h2 class="font-black text-xl flex items-center gap-2"><span>🎁</span> EcoRewards Marketplace</h2><p class="text-xs text-[var(--tx-muted)]">Redeem points for real cash payouts or sustainable lifestyle gifts.</p></div>' +
+        '<div class="text-right p-2.5 rounded-2xl bg-[var(--card-subtle)] border border-[var(--bd)]"><span class="l">Your Balance</span><span class="text-2xl font-black text-emerald-500 dark:text-emerald-400 flex items-center gap-1"><span>⭐</span> ' + S.pts + ' pts</span></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="grid md:grid-cols-3 gap-3.5">' +
+      REWARDS.map((r, i) => 
+        '<div class="c c-interactive flex flex-col justify-between space-y-3.5">' +
+          '<div>' +
+            '<div class="flex justify-between items-center mb-2">' +
+              '<span class="chip ' + (r[2] == 'cash' ? '' : 'amb') + '">' + (r[2] == 'cash' ? '💵 Wallet Credit' : '🎁 Physical Gift') + '</span>' +
+              '<span class="text-xs font-black text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">' + r[1] + ' pts</span>' +
+            '</div>' +
+            '<div class="flex items-center gap-2.5">' +
+              '<span class="text-2xl">' + r[4] + '</span>' +
+              '<div>' +
+                '<h3 class="font-extrabold text-base text-[var(--tx)]">' + r[0] + '</h3>' +
+                '<p class="text-xs text-[var(--tx-muted)] mt-0.5">' + r[5] + '</p>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<button class="b w-full ' + (S.pts < r[1] ? 'opacity-40 cursor-not-allowed hover:transform-none' : '') + '" onclick="redeem(' + i + ')">' +
+            (S.pts < r[1] ? 'Need ' + (r[1] - S.pts) + ' More Pts' : '<span>✨</span> Redeem Now') +
+          '</button>' +
+        '</div>'
+      ).join('') +
+    '</div>';
+}
+
+function redeem(i) {
+  const r = REWARDS[i];
+  if (S.pts < r[1]) return toast('Not enough points to claim this reward', '⚠️');
+  S.pts -= r[1];
+  if (r[2] == 'cash') {
+    S.wallet += r[3];
+    S.payouts += r[3];
+  }
+  launchConfetti();
+  render();
+  toast(r[2] == 'cash' ? m(r[3]) + ' deposited into your wallet!' : 'Voucher code issued: ' + r[0], '🎉');
+}
+
+/* ---------- AGENT ---------- */
+function agentHome() {
+  const open = S.pickups.filter(p => p.st < 2);
+  return '<div class="rounded-3xl border border-[var(--bd)] p-6 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white shadow-xl">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<span class="chip !bg-emerald-500/20 !text-emerald-300 !border-emerald-500/30"><span class="live-dot"></span> Live Dispatch Terminal</span>' +
+          '<h1 class="text-2xl font-black mt-1 flex items-center gap-2"><span>🛵</span> Route #4B · North District Hub</h1>' +
+          '<p class="text-xs text-slate-300 mt-0.5">Agent payout: $1.00 base stop fee + $0.10 per kg collected.</p>' +
+        '</div>' +
+        '<div class="text-right">' +
+          '<div class="l !text-slate-400">Total Shift Earnings</div>' +
+          '<div class="text-3xl font-black text-emerald-400">' + m(S.agentEarn) + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="grid lg:grid-cols-2 gap-4">' +
+      '<div class="c space-y-4">' +
+        '<h2 class="font-extrabold text-lg flex items-center gap-2"><span>⚖️</span> Digital Scale &amp; Verification Terminal</h2>' +
+        (open.length ? 
+          '<div class="space-y-3">' +
+            '<div><label class="l">Select Scheduled Request</label><select id="ap" class="in" onchange="aEst()">' +
+              open.map(p => '<option value="' + p.id + '">' + p.id + ' · ' + p.t + ' (est ' + p.kg + ' kg)</option>').join('') +
+            '</select></div>' +
+            '<div class="grid grid-cols-2 gap-2">' +
+              '<div><label class="l">Calibrated Scale Weight (kg)</label><input id="aw" type="number" step="0.1" min="0.5" value="5" class="in" oninput="aEst()"></div>' +
+              '<div><label class="l">Confirmed Waste Type</label><select id="at" class="in" onchange="aEst()">' +
+                Object.keys(RATE).map(k => '<option>' + k + '</option>').join('') +
+              '</select></div>' +
+            '</div>' +
+            '<div><label class="l">Visual Quality Inspection</label><select id="aq" class="in" onchange="aEst()">' +
+              Object.keys(Q).map(k => '<option value="' + k + '">' + Q[k].icon + ' ' + Q[k].n + '</option>').join('') +
+            '</select></div>' +
+            '<div id="ae2" class="c-subtle !text-xs !p-3 space-y-1.5 border border-emerald-500/30"></div>' +
+            '<button class="b w-full !py-3 font-extrabold text-base" onclick="aConfirm()"><span>⚡</span> Authorize Scale Payout to Customer</button>' +
+          '</div>' : 
+          '<div class="c-subtle text-center py-8 text-[var(--tx-muted)] text-sm flex flex-col items-center gap-2"><span class="text-3xl">☕</span><span>No open jobs on your route queue. All dispatches up to date!</span></div>'
+        ) +
+      '</div>' +
+      '<div class="c space-y-4">' +
+        '<h2 class="font-extrabold text-lg flex items-center gap-2"><span>🚚</span> Live Route Dispatch Progress</h2>' +
+        '<div class="space-y-3">' +
+          S.pickups.filter(p => p.st < 3).map(p => 
+            '<div class="c-subtle space-y-2 cursor-pointer hover:border-emerald-500/50" onclick="viewDeliveryDetails(\'' + p.id + '\')">' +
+              '<div class="flex justify-between items-center font-bold text-sm">' +
+                '<span class="flex items-center gap-1.5">' + (RATE[p.t] ? RATE[p.t].icon : '♻️') + ' ' + p.id + ' · ' + p.t + ' (' + p.kg + ' kg)</span>' +
+                '<span class="chip ' + (p.st == 0 ? 'amb' : 'blue') + '">' + PK[p.st].icon + ' ' + PK[p.st].name + '</span>' +
+              '</div>' +
+              stepper(PK, p.st) +
+              '<div class="pt-1.5 flex gap-2" onclick="event.stopPropagation()">' +
+                (p.st == 0 ? '<button class="b2 w-full" onclick="adv(\'' + p.id + '\')"><span>🛵</span> Accept Pickup &amp; Start Driving</button>' : 
+                 p.st == 2 ? '<button class="b w-full font-bold" onclick="adv(\'' + p.id + '\')"><span>🏭</span> Offload &amp; Deliver to Biogas Plant</button>' : 
+                 '<button class="b2 w-full" onclick="viewDeliveryDetails(\'' + p.id + '\')"><span>📍</span> In-transit: View Live Telemetry</button>') +
+              '</div>' +
+            '</div>'
+          ).join('') +
+          (!S.pickups.some(p => p.st < 3) ? '<div class="c-subtle text-center py-6 text-sm text-[var(--tx-muted)] flex flex-col items-center gap-1"><span class="text-2xl">🎉</span>All daily route dispatches completed.</div>' : '') +
+        '</div>' +
+      '</div>' +
+    '</div>';
+}
+
+function aEst() {
+  const k = +$('aw').value || 0, c = calc($('at').value, k, $('aq').value);
+  $('ae2').innerHTML = 
+    '<div class="flex justify-between items-center"><span class="text-[var(--tx-muted)]">Applicable Rate:</span><b>' + m(c.perkg) + '/kg</b></div>' +
+    '<div class="flex justify-between items-center text-emerald-500 font-extrabold text-sm"><span>Customer Payout:</span><span>' + m(c.pay) + ' (' + (c.pts > 0 ? '+' : '') + c.pts + ' pts)</span></div>' +
+    '<div class="flex justify-between items-center pt-1 border-t border-[var(--bd)] text-[var(--tx-muted)]"><span>Agent Commission:</span><b class="text-emerald-400 font-bold">' + m(c.fee) + '</b></div>';
+}
+
+function adv(id) {
+  const p = S.pickups.find(x => x.id == id);
+  p.st = p.st == 0 ? 1 : 3;
+  if (!p.timeline) p.timeline = [];
+  p.timeline.push({
+    time: 'Just now',
+    title: p.st === 1 ? 'Agent On Route' : 'Delivered to Anaerobic Plant',
+    desc: p.st === 1 ? 'Marcus Vance is in transit with EV cargo trike.' : 'Batch offloaded into anaerobic primary fermentation bioreactor.'
+  });
+  playAudioFeedback('tap');
+  render();
+  toast('Status updated to: ' + PK[p.st].name, '🛵');
+}
+
+function aConfirm() {
+  const p = S.pickups.find(x => x.id == $('ap').value), k = +$('aw').value, t = $('at').value, g = $('aq').value, c = calc(t, k, g);
+  Object.assign(p, {kg: k, t, g, pay: c.pay, pts: c.pts, st: 2});
+  if (!p.timeline) p.timeline = [];
+  p.timeline.push({
+    time: 'Just now',
+    title: 'Scale Weighed & Paid (' + k + ' kg)',
+    desc: 'Quality certified ' + Q[g].n + '. Digital payout ' + m(c.pay) + ' disbursed.'
+  });
+  S.wallet += c.pay;
+  S.pts = Math.max(0, S.pts + c.pts);
+  S.agentEarn += c.fee;
+  S.payouts += c.pay;
+  S.fees += c.fee;
+  launchConfetti();
+  render();
+  toast('Customer received ' + m(c.pay) + ' · You earned ' + m(c.fee), '💵');
+}
+
+function earn() {
+  const tot = S.pickups.filter(p => p.st >= 2).length;
+  return '<div class="grid grid-cols-2 gap-3">' +
+      '<div class="c"><span class="l">Shift Take-Home</span><div class="text-3xl font-black text-emerald-500 dark:text-emerald-400">' + m(S.agentEarn) + '</div><span class="text-[10px] text-[var(--tx-muted)] mt-1 block">Instant daily transfer</span></div>' +
+      '<div class="c"><span class="l">Completed Stops</span><div class="text-3xl font-black text-[var(--tx)]">' + tot + '</div><span class="text-[10px] text-[var(--tx-muted)] mt-1 block">100% verified weight</span></div>' +
+    '</div>' +
+    '<div class="c space-y-2">' +
+      '<h3 class="font-extrabold text-base flex items-center gap-2"><span>🛡️</span> Transparent Agent Compensation Formula</h3>' +
+      '<p class="text-sm text-[var(--tx-muted)] leading-relaxed">Agents earn a guaranteed $1.00 base stop fee + $0.10/kg for verified organic weight collected. Automatic reconciliation ensures zero delayed compensation.</p>' +
+    '</div>';
+}
+
+/* ---------- B2B ---------- */
+function b2bHome() {
+  return '<div class="rounded-3xl border border-[var(--bd)] p-6 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white shadow-xl">' +
+      '<span class="chip !bg-emerald-500/20 !text-emerald-300 !border-emerald-500/30"><span class="live-dot"></span> Verified Laboratory Standard</span>' +
+      '<h1 class="text-2xl font-black mt-1 flex items-center gap-2"><span>🏭</span> Industrial Feedstock &amp; Digestate</h1>' +
+      '<p class="text-xs text-slate-300 mt-0.5">Procuring Account: Apex BioEnergy GmbH · High-COD Biogas Feedstock</p>' +
+    '</div>' +
+    '<div class="grid md:grid-cols-3 gap-3.5">' +
+      PRODUCTS.map((p, i) => 
+        '<div class="c c-interactive flex flex-col justify-between space-y-3.5">' +
+          '<div>' +
+            '<div class="flex justify-between items-start mb-1">' +
+              '<span class="chip mb-2">Grade Standard</span>' +
+              '<span class="text-2xl">' + p[3] + '</span>' +
+            '</div>' +
+            '<h3 class="font-bold text-base text-[var(--tx)]">' + p[0] + '</h3>' +
+            '<p class="text-xs text-[var(--tx-muted)] mt-1">' + p[2] + '</p>' +
+            '<p class="text-[11px] text-emerald-500 mt-1">✨ ' + p[4] + '</p>' +
+          '</div>' +
+          '<div>' +
+            '<div class="text-2xl font-black text-emerald-500 dark:text-emerald-400 mb-2.5">$' + p[1].toLocaleString() + ' <span class="text-xs font-normal text-[var(--tx-muted)]">/ dry ton</span></div>' +
+            '<button class="b w-full" onclick="document.getElementById(\'bp\').value=' + i + ';bEst();document.getElementById(\'bc\').scrollIntoView({behavior:\'smooth\'})"><span>🛒</span> Configure Order</button>' +
+          '</div>' +
+        '</div>'
+      ).join('') +
+    '</div>' +
+    '<div id="bc" class="c space-y-3.5 max-w-xl mx-auto border border-emerald-500/30">' +
+      '<h2 class="font-extrabold text-lg flex items-center gap-2"><span>⚡</span> Bulk Purchase Order Calculator</h2>' +
+      '<select id="bp" class="in" onchange="bEst()">' +
+        PRODUCTS.map((p, i) => '<option value="' + i + '">' + p[3] + ' ' + p[0] + '</option>').join('') +
+      '</select>' +
+      '<div class="grid grid-cols-2 gap-2.5">' +
+        '<div><label class="l">Tonnage (Metric Tons)</label><input id="bq" type="number" min="1" max="1000" value="10" class="in" oninput="bEst()"></div>' +
+        '<div><label class="l">Off-Take Schedule</label><select id="bs" class="in" onchange="bEst()"><option value="0">One-time batch</option><option value=".1">Weekly contract (10% discount)</option><option value=".15">Bi-weekly contract (15% discount)</option></select></div>' +
+      '</div>' +
+      '<div id="bt" class="c-subtle !text-xs !p-3.5 space-y-1.5 border border-emerald-500/30"></div>' +
+      '<button class="b w-full !py-3 font-extrabold text-base" onclick="bOrder()"><span>📄</span> Submit Formal Purchase Order</button>' +
+    '</div>';
+}
+
+function bCalc() {
+  const p = PRODUCTS[+$('bp').value], q = +$('bq').value || 0, d = +$('bs').value, base = p[1] * q, fr = q * 8;
+  return {p, q, total: base * (1 - d) + fr, base, fr, ch4: q * 112};
+}
+
+function bEst() {
+  const c = bCalc();
+  $('bt').innerHTML = 
+    '<div class="flex justify-between items-center text-[var(--tx-muted)]"><span>Feedstock Base:</span><b>' + m(c.base) + '</b></div>' +
+    '<div class="flex justify-between items-center text-[var(--tx-muted)]"><span>Logistics &amp; Handling:</span><b>' + m(c.fr) + '</b></div>' +
+    '<div class="flex justify-between items-center text-emerald-400 font-bold"><span>Biomethane Yield Potential:</span><span>~' + c.ch4.toLocaleString() + ' m³ CH₄</span></div>' +
+    '<div class="flex justify-between items-center pt-1.5 border-t border-[var(--bd)] text-emerald-500 font-black text-sm">' +
+      '<span>Total Contract Total:</span><span>' + m(c.total) + '</span>' +
+    '</div>';
+}
+
+function bOrder() {
+  const c = bCalc();
+  S.orders.unshift({id: 'PO-' + (S.oid++), p: c.p[0], tn: c.q, total: c.total, st: 0});
+  S.revenue += c.total;
+  launchConfetti();
+  render();
+  toast('Purchase order ' + S.orders[0].id + ' submitted to plant', '⚡');
+  S.page = 'orders';
+  render();
+}
+
+function orders() {
+  return '<div class="c space-y-3.5">' +
+      '<div class="flex justify-between items-center">' +
+        '<h2 class="font-extrabold text-lg flex items-center gap-2"><span>📦</span> Commercial Purchase Orders &amp; Dispatches</h2>' +
+        '<span class="chip blue">' + S.orders.length + ' Active Orders</span>' +
+      '</div>' +
+      (S.orders.map(o => 
+        '<div class="c-subtle space-y-2">' +
+          '<div class="flex justify-between items-center font-bold text-sm">' +
+            '<span class="flex items-center gap-2"><span>⚡</span> ' + o.id + ' · ' + o.p + ' (' + o.tn + ' tons)</span>' +
+            '<span class="text-emerald-500 dark:text-emerald-400 font-black">' + m(o.total) + '</span>' +
+          '</div>' +
+          stepper(BS, o.st) +
+          (S.role == 'owner' && o.st < 2 ? 
+            '<div class="pt-2"><button class="b2 w-full font-bold" onclick="S.orders.find(x=>x.id==\'' + o.id + '\').st++;render();toast(\'Advanced order dispatch\',\'🚛\')"><span>🚛</span> Advance Tanker Dispatch Status</button></div>' : '') +
+        '</div>'
+      ).join('') || '<div class="c-subtle text-center py-6 text-sm text-[var(--tx-muted)]">No active orders placed yet.</div>') +
+    '</div>';
+}
+
+/* ---------- OWNER ---------- */
+function ownerHome() {
+  return '<div class="rounded-3xl border border-emerald-500/30 p-6 md:p-8 bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-950 text-white shadow-2xl relative overflow-hidden">' +
+      '<div class="absolute -right-10 -bottom-10 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>' +
+      '<span class="chip !bg-emerald-500/20 !text-emerald-300 !border-emerald-500/30"><span class="live-dot"></span> Executive Analytics Engine</span>' +
+      '<div class="mt-3">' +
+        '<div class="text-xs uppercase text-slate-400 font-bold tracking-wider">Platform Net Realized Margin</div>' +
+        '<div class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight my-1">' + m(profit()) + '</div>' +
+        '<p class="text-xs text-slate-300">Net revenue balance: Commercial feedstock receipts minus consumer payouts and agent logistics compensation.</p>' +
+      '</div>' +
+    '</div>' +
+    '<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">' +
+      [['Commercial B2B Revenue', m(S.revenue), 'text-emerald-400', '⚡ Off-taker sales'],
+       ['Direct Consumer Payouts', m(S.payouts), 'text-blue-400', '🏡 Household disbursements'],
+       ['Agent Logistics Fees', m(S.fees), 'text-amber-400', '🛵 Route driver payouts'],
+       ['Gross Margin Ratio', (S.revenue ? profit() / S.revenue * 100 : 0).toFixed(1) + '%', 'text-emerald-400', '📈 Return on gross']
+      ].map(x => 
+        '<div class="c flex flex-col justify-between">' +
+          '<span class="l">' + x[0] + '</span>' +
+          '<div class="text-2xl font-black ' + x[2] + ' my-1">' + x[1] + '</div>' +
+          '<span class="text-[10px] text-[var(--tx-muted)]">' + x[3] + '</span>' +
+        '</div>'
+      ).join('') +
+    '</div>' +
+    '<div class="c space-y-2">' +
+      '<h3 class="font-extrabold text-base flex items-center gap-2"><span>📊</span> Unit Economics &amp; Social Enterprise Modeling</h3>' +
+      '<p class="text-xs text-[var(--tx-muted)] leading-relaxed">Household organic procurement: $0.60–$0.95/kg · Field collection logistics: $1.00/stop + $0.10/kg · Wholesale biomethane digestate slurry sales: $1,000–$1,400 per metric ton.</p>' +
+    '</div>' +
+    orders();
+}
+
+/* ---------- SDG PAGE ---------- */
+const SDG_DATA = [
+  {
+    num: 1, title: 'No Poverty', color: '#E5243B', icon: '💵',
+    target: 'Direct supplemental micro-incomes for daily household waste sorting',
+    metric: '$18,450 disbursed directly into low-income household digital wallets'
+  },
+  {
+    num: 2, title: 'Zero Hunger', color: '#DDA63A', icon: '🌾',
+    target: 'Digestate bio-fertilizer replaces chemical fertilizers on regional farms',
+    metric: '4.8 metric tons of nutrient-rich bio-compost provided to local urban gardens'
+  },
+  {
+    num: 7, title: 'Affordable & Clean Energy', color: '#FCC30B', icon: '⚡',
+    target: 'High-COD organic slurry converts to carbon-neutral pipeline biomethane',
+    metric: '18,200 kWh equivalent renewable bio-methane supplied to city energy grid'
+  },
+  {
+    num: 8, title: 'Decent Work & Economic Growth', color: '#A21942', icon: '🛵',
+    target: 'Fair-wage, dignified green employment for neighborhood EV route drivers',
+    metric: '100% transparent algorithmic earnings ($1 stop + $0.10/kg guaranteed)'
+  },
+  {
+    num: 11, title: 'Sustainable Cities & Communities', color: '#FD9D24', icon: '🏙️',
+    target: 'Eliminating putrescible organic waste from rotting in municipal landfills',
+    metric: '12.4 metric tons diverted from open dumpsites and neighborhood drains'
+  },
+  {
+    num: 12, title: 'Responsible Consumption & Production', color: '#BF8B2E', icon: '🔄',
+    target: 'Full circular cradle-to-cradle economy turning food scraps into energy',
+    metric: '92% conversion efficiency from raw organics to anaerobic feedstock'
+  },
+  {
+    num: 13, title: 'Climate Action', color: '#3F7E44', icon: '🌍',
+    target: 'Abating short-lived fugitive methane greenhouse emissions (28x worse than CO₂)',
+    metric: '23.5 metric tons CO₂ equivalent emissions directly prevented'
+  },
+  {
+    num: 17, title: 'Partnerships for the Goals', color: '#19486A', icon: '🤝',
+    target: 'Cross-sector alliances with municipal bodies, community NGOs, and biogas utilities',
+    metric: '14 active NGO awareness workshops and shelter kitchen collection drives'
+  }
+];
+
+function renderSDGWheelSVG() {
+  const colors = [
+    '#E5243B','#DDA63A','#4C9F38','#C5192D','#FF3A21','#26BDE2',
+    '#FCC30B','#A21942','#FD6925','#DD1367','#FD9D24','#BF8B2E',
+    '#3F7E44','#0A97D9','#56C02B','#00689D','#19486A'
+  ];
+  const count = colors.length;
+  let paths = '';
+  const cx = 50, cy = 50, rOuter = 46, rInner = 24;
+
+  for (let i = 0; i < count; i++) {
+    const angle1 = (i * 2 * Math.PI) / count - Math.PI / 2;
+    const angle2 = ((i + 1) * 2 * Math.PI) / count - Math.PI / 2;
+    const x1 = cx + rOuter * Math.cos(angle1);
+    const y1 = cy + rOuter * Math.sin(angle1);
+    const x2 = cx + rOuter * Math.cos(angle2);
+    const y2 = cy + rOuter * Math.sin(angle2);
+    const x3 = cx + rInner * Math.cos(angle2);
+    const y3 = cy + rInner * Math.sin(angle2);
+    const x4 = cx + rInner * Math.cos(angle1);
+    const y4 = cy + rInner * Math.sin(angle1);
+
+    paths += '<path d="M ' + x1 + ' ' + y1 + ' A ' + rOuter + ' ' + rOuter + ' 0 0 1 ' + x2 + ' ' + y2 + ' L ' + x3 + ' ' + y3 + ' A ' + rInner + ' ' + rInner + ' 0 0 0 ' + x4 + ' ' + y4 + ' Z" fill="' + colors[i] + '"/>';
+  }
+
+  return '<svg class="w-20 h-20 md:w-24 md:h-24 shrink-0 drop-shadow-md" viewBox="0 0 100 100">' +
+    paths +
+    '<circle cx="50" cy="50" r="22" fill="var(--card)" />' +
+    '<text x="50" y="47" text-anchor="middle" font-size="8" font-weight="900" fill="var(--tx)">UN</text>' +
+    '<text x="50" y="56" text-anchor="middle" font-size="7" font-weight="800" fill="var(--tx)">SDGs</text>' +
+  '</svg>';
+}
+
+function about() {
+  return '<div class="space-y-6">' +
+    '<div class="c relative overflow-hidden border border-emerald-500/25 p-6 md:p-8 bg-gradient-to-br from-[#081810] via-[#0b1b13] to-[#06140d] text-white shadow-2xl">' +
+      '<div class="flex flex-col md:flex-row items-center gap-6 relative z-10">' +
+        renderSDGWheelSVG() +
+        '<div class="space-y-1.5 text-center md:text-left">' +
+          '<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black bg-white/10 text-emerald-300 border border-white/20">' +
+            '<span>🌍</span> United Nations Sustainable Development Goals Alignment' +
+          '</div>' +
+          '<h1 class="text-2xl sm:text-4xl font-black tracking-tight">Purpose-Driven Environmental Action</h1>' +
+          '<p class="text-xs sm:text-sm text-emerald-100/80 leading-relaxed max-w-2xl">' +
+            'EcoCycle’s commercial model is directly mapped to the UN 2030 Agenda for Sustainable Development. We turn everyday community wet waste into measurable ecological, social, and economic progress.' +
+          '</p>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="space-y-3">' +
+      '<div class="flex justify-between items-center">' +
+        '<h2 class="text-xl font-black text-[var(--tx)] flex items-center gap-2"><span>🎯</span> Priority SDGs Actively Accelerated</h2>' +
+        '<span class="chip"><span class="live-dot"></span> 8 Active Goals</span>' +
+      '</div>' +
+      '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5">' +
+        SDG_DATA.map(s => 
+          '<div class="c c-interactive flex flex-col justify-between space-y-3 border-t-4" style="border-top-color: ' + s.color + ';">' +
+            '<div>' +
+              '<div class="flex justify-between items-center mb-1.5">' +
+                '<span class="text-xs font-black px-2 py-0.5 rounded-full text-white" style="background-color: ' + s.color + ';">SDG ' + s.num + '</span>' +
+                '<span class="text-2xl">' + s.icon + '</span>' +
+              '</div>' +
+              '<h3 class="font-extrabold text-base text-[var(--tx)]">' + s.title + '</h3>' +
+              '<p class="text-xs text-[var(--tx-muted)] mt-1.5 leading-relaxed">' + s.target + '</p>' +
+            '</div>' +
+            '<div class="p-2.5 rounded-xl bg-[var(--card-subtle)] border border-[var(--bd)] text-[11px] font-bold text-emerald-500 dark:text-emerald-400">' +
+              '✨ ' + s.metric +
+            '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>' +
+
+    '<div class="c space-y-3">' +
+      '<h2 class="text-lg font-black text-[var(--tx)] flex items-center gap-2"><span>🔄</span> The Closed-Loop Bio Network</h2>' +
+      '<p class="text-sm text-[var(--tx-muted)] leading-relaxed">' +
+        'Organic scraps do not belong in landfills where they decompose anaerobically into fugitive methane. EcoCycle captures them at source, paying households $0.60–$0.95/kg, and pipes them directly to anaerobic digestion reactors where they displace fossil fuels and generate chemical-free agricultural inputs.' +
+      '</p>' +
+    '</div>' +
+  '</div>';
+}
+
+/* ---------- CATCHY & PROFESSIONAL NGO ALLIES PAGE ---------- */
+function ngo() {
+  return '<div class="space-y-8">' +
+    '<!-- HERO BANNER -->' +
+    '<div class="c relative overflow-hidden border border-emerald-500/30 p-8 md:p-12 bg-gradient-to-br from-[#081810] via-[#0d2218] to-[#07170f] text-white shadow-2xl">' +
+      '<div class="absolute -right-16 -top-16 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>' +
+      '<div class="relative z-10 max-w-3xl space-y-4">' +
+        '<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">' +
+          '<span class="live-dot"></span> UN SDG 17 Global Partnership Framework' +
+        '</div>' +
+        '<h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">' +
+          'Community <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-300">NGO Allies Network</span>' +
+        '</h1>' +
+        '<p class="text-sm sm:text-base text-emerald-100/80 leading-relaxed max-w-2xl">' +
+          'Empowering civil society organizations, urban shelter kitchens, environmental activists, and philanthropic foundations to transform localized organic waste into recurring community funding and clean energy.' +
+        '</p>' +
+        '<div class="flex flex-wrap gap-3 pt-2">' +
+          '<button class="b !py-3 !px-6 font-bold text-sm shadow-xl" onclick="document.getElementById(\'ngoApply\').scrollIntoView({behavior:\'smooth\'})">' +
+            '<span>🤝</span> Join as an Alliance Partner' +
+          '</button>' +
+          '<button class="b2 !py-3 !px-5 font-bold text-sm bg-white/10 hover:bg-white/20 text-white border-white/20" onclick="document.getElementById(\'ngoTracks\').scrollIntoView({behavior:\'smooth\'})">' +
+            '<span>📚</span> Explore 4 Impact Tracks' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      '<!-- LIVE ALLIES METRIC BAR -->' +
+      '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 mt-6 border-t border-emerald-800/60 relative z-10">' +
+        [['24+ Active NGOs', 'Across 6 Municipalities', '🏛️'],
+         ['100% Free Pickups', 'For Charities & Food Banks', '🍲'],
+         ['$42,500+ Shared Fund', 'Direct Community Royalties', '💎'],
+         ['120+ Collectors', 'Equipped with EV Cargo Trikes', '🛵']
+        ].map(k => 
+          '<div>' +
+            '<div class="text-xl sm:text-2xl font-black text-emerald-400 flex items-center gap-1.5"><span>' + k[2] + '</span><span>' + k[0] + '</span></div>' +
+            '<div class="text-xs text-slate-300 mt-0.5">' + k[1] + '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>' +
+
+    '<!-- 4 INTERACTIVE ALLIANCE TRACKS -->' +
+    '<div id="ngoTracks" class="space-y-4">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<span class="chip purple">Strategic Engagement</span>' +
+          '<h2 class="text-2xl font-black text-[var(--tx)] mt-1">4 Targeted Collaboration Tracks</h2>' +
+          '<p class="text-xs text-[var(--tx-muted)]">Tailored operational models matching your organization\'s grassroot capabilities.</p>' +
+        '</div>' +
+        '<span class="text-xs font-bold text-emerald-500">Fully Funded by Platform Off-Take ↗</span>' +
+      '</div>' +
+      '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">' +
+        [[
+          '🍲 Soup Kitchen & Shelter Relief',
+          'Free waste disposal and daily pickups for community dining halls, shelters, and food distribution centers.',
+          '100% Free Logistics · Biogas Clean Fuel Credits',
+          'border-emerald-500/40 hover:border-emerald-500'
+        ],
+        [
+          '🌱 Neighborhood Segregation Drives',
+          'Door-to-door resident training and community aggregation bins. Earn $0.15/kg community treasury share on all segregated mass.',
+          'Earn $150 per metric ton aggregated',
+          'border-teal-500/40 hover:border-teal-500'
+        ],
+        [
+          '🛵 Collector Co-Ops & Gig Uplift',
+          'Formalize informal waste pickers with certified safety gear, calibrated digital scales, and electric cargo trikes.',
+          'Living wage ($1 stop + $0.10/kg guaranteed)',
+          'border-blue-500/40 hover:border-blue-500'
+        ],
+        [
+          '🏢 Corporate CSR & ESG Offsets',
+          'Deploy branded zero-waste bio-energy hubs with verifiable third-party Scope 3 carbon mitigation certificates.',
+          'Audited GHG Mitigation & Donor Reporting',
+          'border-amber-500/40 hover:border-amber-500'
+        ]].map((tr, idx) => 
+          '<div class="c c-interactive flex flex-col justify-between space-y-3.5 border ' + tr[3] + '">' +
+            '<div>' +
+              '<div class="flex justify-between items-center mb-1">' +
+                '<span class="text-xs font-extrabold text-[var(--tx-muted)] uppercase tracking-wider">Track 0' + (idx + 1) + '</span>' +
+                '<span class="chip !text-[10px]">Active</span>' +
+              '</div>' +
+              '<h3 class="font-extrabold text-base text-[var(--tx)] mt-1">' + tr[0] + '</h3>' +
+              '<p class="text-xs text-[var(--tx-muted)] mt-1.5 leading-relaxed">' + tr[1] + '</p>' +
+            '</div>' +
+            '<div class="p-2.5 rounded-xl bg-[var(--card-subtle)] border border-[var(--bd)] text-[11px] font-bold text-emerald-500 dark:text-emerald-400">' +
+              '✨ ' + tr[2] +
+            '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>' +
+
+    '<!-- WHAT WE PROVIDE VS WHAT NGOS PROVIDE -->' +
+    '<div class="grid md:grid-cols-2 gap-4">' +
+      '<div class="c space-y-3 border-l-4 border-l-emerald-500">' +
+        '<div class="flex items-center gap-2">' +
+          '<div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base">🎁</div>' +
+          '<h3 class="font-black text-base text-[var(--tx)]">What EcoCycle Provides NGO Allies</h3>' +
+        '</div>' +
+        '<ul class="space-y-2 text-xs text-[var(--tx-muted)]">' +
+          '<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span><b>Heavy-Duty Infrastructure:</b> Airtight 120L and 240L odor-controlled bio-bins delivered to community centers free of charge.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span><b>Community Treasury Royalties:</b> Direct monthly bank or digital wallet deposits representing your share of organic feedstock revenue.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span><b>Green Jobs Fleet:</b> Electric cargo trikes provided to partner worker cooperatives with smartphone digital weighing apps.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span><b>Donor-Grade ESG Metrics:</b> Verified environmental compliance certificates showing methane abatement and farm compost output.</span></li>' +
+        '</ul>' +
+      '</div>' +
+
+      '<div class="c space-y-3 border-l-4 border-l-blue-500">' +
+        '<div class="flex items-center gap-2">' +
+          '<div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-base">📢</div>' +
+          '<h3 class="font-black text-base text-[var(--tx)]">How Community NGOs Drive the Network</h3>' +
+        '</div>' +
+        '<ul class="space-y-2 text-xs text-[var(--tx-muted)]">' +
+          '<li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span><span><b>Citizen Awareness Workshops:</b> Educate households and youth clubs on clean segregation to eliminate plastic and chemical contamination.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span><span><b>Neighborhood Collection Clusters:</b> Mobilize local housing colonies to coordinate scheduled aggregate batch collections.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span><span><b>Beneficiary Enrolment:</b> Connect informal waste-pickers and marginalized youth to dignity-first green logistics careers.</span></li>' +
+          '<li class="flex items-start gap-2"><span class="text-blue-400 font-bold">✓</span><span><b>Civic Monitoring:</b> Act as independent local oversight ensuring ethical collection and transparent household compensation.</span></li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>' +
+
+    '<!-- ACCREDITED ALLIANCE SHOWCASE -->' +
+    '<div class="c space-y-4">' +
+      '<div class="flex justify-between items-center flex-wrap gap-2">' +
+        '<div>' +
+          '<h3 class="font-black text-lg text-[var(--tx)] flex items-center gap-2"><span>🏛️</span> Active NGO Alliances &amp; Verification Board</h3>' +
+          '<p class="text-xs text-[var(--tx-muted)]">Verified partner organizations currently operating with EcoCycle.</p>' +
+        '</div>' +
+        '<span class="chip"><span class="live-dot"></span> Live Registry</span>' +
+      '</div>' +
+      '<div class="grid sm:grid-cols-3 gap-3">' +
+        S.ngos.map(n => 
+          '<div class="c-subtle space-y-2 border border-emerald-500/30">' +
+            '<div class="flex justify-between items-center">' +
+              '<span class="chip !text-[10px]">' + n.status + '</span>' +
+              '<span class="text-xs font-mono text-[var(--tx-muted)]">' + n.city + '</span>' +
+            '</div>' +
+            '<div class="font-bold text-sm text-[var(--tx)]">' + n.name + '</div>' +
+            '<div class="flex justify-between text-xs text-[var(--tx-muted)] pt-1 border-t border-[var(--bd)]">' +
+              '<span>' + n.type + '</span>' +
+              '<b class="text-emerald-500">' + n.tons + '</b>' +
+            '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>' +
+
+    '<!-- CATCHY APPLICATION TERMINAL -->' +
+    '<div id="ngoApply" class="c max-w-2xl mx-auto space-y-4 border border-emerald-500/40 shadow-2xl relative overflow-hidden">' +
+      '<div class="absolute -right-10 -bottom-10 w-44 h-44 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>' +
+      '<div class="text-center space-y-1">' +
+        '<span class="chip">Partnership Onboarding</span>' +
+        '<h3 class="font-black text-2xl text-[var(--tx)]">Register Your NGO Alliance</h3>' +
+        '<p class="text-xs text-[var(--tx-muted)]">Partner agreements are processed within 48 business hours with complimentary equipment grants.</p>' +
+      '</div>' +
+      '<div class="space-y-3 pt-2">' +
+        '<div>' +
+          '<label class="l">Official Organization / NGO Legal Name</label>' +
+          '<input id="nn" class="in" placeholder="e.g. Hope Community Kitchens &amp; Ecology"> ' +
+        '</div>' +
+        '<div class="grid sm:grid-cols-2 gap-3">' +
+          '<div>' +
+            '<label class="l">Executive Representative Email</label>' +
+            '<input id="ne" class="in" placeholder="director@organization.org">' +
+          '</div>' +
+          '<div>' +
+            '<label class="l">City / Operational Municipality</label>' +
+            '<input id="nc" class="in" placeholder="e.g. North Metropolitan District">' +
+          '</div>' +
+        '</div>' +
+        '<div>' +
+          '<label class="l">Select Primary Impact Track</label>' +
+          '<select id="nt" class="in">' +
+            '<option>🍲 Track 1: Free Soup Kitchen &amp; Shelter Waste Relief</option>' +
+            '<option>🌱 Track 2: Neighborhood Community Waste Segregation Drives</option>' +
+            '<option>🛵 Track 3: Informal Waste Worker Formalization &amp; EV Logistics</option>' +
+            '<option>🏢 Track 4: Corporate CSR Alignment &amp; ESG Carbon Credits</option>' +
+          '</select>' +
+        '</div>' +
+        '<div>' +
+          '<label class="l">Estimated Monthly Wet Waste Volume</label>' +
+          '<select id="nv" class="in">' +
+            '<option>1 to 5 metric tons / month (Small Shelter / Single Ward)</option>' +
+            '<option>5 to 20 metric tons / month (Multi-Center Network)</option>' +
+            '<option>20+ metric tons / month (District-Wide Operation)</option>' +
+          '</select>' +
+        '</div>' +
+        '<div class="p-3 rounded-xl bg-[var(--card-subtle)] border border-[var(--bd)] text-xs text-[var(--tx-muted)] flex items-center gap-2">' +
+          '<span class="text-lg">🎁</span>' +
+          '<span><b>Included with Alliance:</b> Free 240L bins, calibrated digital scale unit, and live impact reporting portal.</span>' +
+        '</div>' +
+        '<button class="b w-full !py-3 font-extrabold text-base" onclick="joinNgoEnhanced()">' +
+          '<span>🚀</span> Submit Partnership Application' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+function joinNgoEnhanced() {
+  const n = $('nn').value, e = $('ne').value;
+  if (!n || !e) return toast('Please enter official NGO name and email', '⚠️');
+  const city = $('nc').value || 'Metro District';
+  const track = $('nt').value.split(':')[1] || 'Community Alliance';
+
+  S.ngos.unshift({
+    name: n,
+    type: track.trim(),
+    tons: '3.5 t/mo (Est.)',
+    city: city,
+    status: 'Verified Candidate'
+  });
+
+  launchConfetti();
+  render();
+  toast('Partnership proposal submitted for ' + n, '🤝');
+
+  modal(
+    '<div class="text-center space-y-4 py-2">' +
+      '<div class="w-16 h-16 mx-auto rounded-3xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl">🎉</div>' +
+      '<div>' +
+        '<h3 class="text-xl font-black text-[var(--tx)]">Alliance Proposal Logged!</h3>' +
+        '<p class="text-xs text-[var(--tx-muted)] mt-1">Thank you for joining the EcoCycle circular energy initiative.</p>' +
+      '</div>' +
+      '<div class="c-subtle text-left space-y-1.5 text-xs border border-emerald-500/30">' +
+        '<div><span class="text-[var(--tx-muted)]">Organization:</span> <b>' + n + '</b></div>' +
+        '<div><span class="text-[var(--tx-muted)]">Focal Email:</span> <b>' + e + '</b></div>' +
+        '<div><span class="text-[var(--tx-muted)]">Impact Track:</span> <b>' + track.trim() + '</b></div>' +
+        '<div><span class="text-[var(--tx-muted)]">Status:</span> <span class="chip">Under 48h Accreditation Review</span></div>' +
+      '</div>' +
+      '<button class="b w-full" onclick="closeM()">Done</button>' +
+    '</div>'
+  );
+}
+
+// --- RENDER ROUTER ---
+function render() {
+  const r = S.role, p = S.page;
+  let b;
+
+  if (p === 'login') {
+    $('app').innerHTML = loginView();
+    return;
+  }
+
+  if (p === 'landing' || (!r && (p === 'home' || !p))) {
+    b = landingPage();
+  } else if (p === 'about') {
+    b = about();
+  } else if (p === 'ngo') {
+    b = ngo();
+  } else if (r === 'customer') {
+    b = p === 'rates' ? rates() : p === 'rewards' ? rewards() : custHome();
+  } else if (r === 'agent') {
+    b = p === 'earn' ? earn() : agentHome();
+  } else if (r === 'b2b') {
+    b = p === 'orders' ? orders() : b2bHome();
+  } else if (r === 'owner') {
+    b = ownerHome();
+  } else {
+    b = landingPage();
+  }
+
+  $('app').innerHTML = shell(b);
+  if (r === 'b2b' && p === 'home') bEst();
+  if (r === 'agent' && p === 'home' && $('ae2')) aEst();
+}
+
+render();
+</script>
+</body>
+</html>
